@@ -8,7 +8,7 @@
 " Set the runtime path to include Vundle and initialize {
     set nocompatible
     filetype off
-    set rtp+=~/.vim/bundle/vundle/
+    set rtp+=~/.vim/bundle/Vundle/
     call vundle#rc()
 " }
 
