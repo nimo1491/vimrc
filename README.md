@@ -186,10 +186,10 @@ Try these commands:
 
 Vim motions on speed!
 
-* `<leader>w` to begin of word forward.
-* `<leader>b` to begin of word backward.
-* `<leader>f{char}` to find `{char}` to the right.
-* `<leader>F{char}` to find `{char}` to the left.
+* `<leader><leader>w` to begin of word forward.
+* `<leader><leader>b` to begin of word backward.
+* `<leader><leader>f{char}` to find `{char}` to the right.
+* `<leader><leader>F{char}` to find `{char}` to the left.
 
 ## [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
 
@@ -317,7 +317,6 @@ Fuzzy file, buffer, mru, tag, etc finder.
 
 ##### Customizations:
 * `<leader>p` to toggle ctrlp.
-* The default toggle mode is `:CtrlPBuffer`.
 
 ## [indent-motion](https://github.com/vim-scripts/indent_motion)
 
@@ -325,6 +324,14 @@ Vim motions to the start and end of the current indentation-delimited block.
 
 * `<leader>[` to move to the beginning of your current indentation-delimited block.
 * `<leader>]` to move to the end of your current indentation-delimited block.
+
+## [argtextobj.vim](https://github.com/vim-scripts/argtextobj.vim)
+
+Text-object like motion for arguments.
+
+* `daa` delete an argument.
+* `cia` change inner argument.
+* `via` select inner argument.
 
 ## [ultisnips](https://github.com/SirVer/ultisnips)
 
@@ -342,6 +349,10 @@ Ghetto HTML/XML mappings.
 
 * `<c-x><space>` to add closing tag on the same line.
 * `<c-x><enter>` to add closing tag separated by a newline.
+
+## [MatchTag](https://github.com/gregsexton/MatchTag)
+
+Vim's MatchParen for HTML tags.
 
 ## [emmet-vim](https://github.com/mattn/emmet-vim)
 
