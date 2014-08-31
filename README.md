@@ -333,20 +333,6 @@ Vim motions to the start and end of the current indentation-delimited block.
 * `<leader>[` to move to the beginning of your current indentation-delimited block.
 * `<leader>]` to move to the end of your current indentation-delimited block.
 
-## [VisIncr](https://github.com/vim-scripts/VisIncr)
-
-Produce increasing/decreasing columns of numbers, datas, or daynames.
-
-1. First, select a column using visual-block `<c-v>` and move the cursor.
-2. Second, choose what sort of incremented list you want:
-    * `:I [#]` to use the first line's number as a starting point to build a column of increasing/decreasing numbers.
-    * `:IYMD [#]` year/month/day
-    * `:IMDY [#]` month/day/year
-    * `:IDMY [#]` day/month/year
-        * They use the starting line's date to construct an increasing/decreasing list of dates.
-
-See `:help visincr` to learn more about VisIncr.
-
 ## [ultisnips](https://github.com/SirVer/ultisnips)
 
 The ultimate snippet solution for Vim.
