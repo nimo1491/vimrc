@@ -78,9 +78,7 @@ To install from command line: `vim +PluginInstall +qall`
 
 The `one-step install` and the above examples are using `vimrc_min` which includes the basic plug-ins.
 
-Try to use `vim_stab` which includes some completion plug-ins. You can trigger completion by press `<leader><tab>`.
-
-`vim_ycm` is similar to `vim_stab` except it uses `YouCompleteMe` to trigger completion automatically.
+Try to use `vim_ycm` which uses `YouCompleteMe` to trigger completion automatically.
 
 **IMPORTANT** `tern_for_vim` and `YouCompleteMe` are needed to be compiled.
 
@@ -142,13 +140,6 @@ Provide emacs-like colorscheme selector buffer.
 
 * `:SelectColorS` to change themes.
 * `<c-q>` to exit colorselect window.
-
-## [indentLine](https://github.com/Yggdroot/indentLine)
-
-A vim plugin to display the indention levels with thin vertical lines.
-
-##### Customizations:
-* `<leader>il` to toggle indentLine.
 
 ## [vim-airline](https://github.com/bling/vim-airline)
 
@@ -213,21 +204,6 @@ Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, e
 * `<leader>j` to move down. 
 * `<leader>l` to move right.
 * `<leader>h` to move left.
-
-## [vim-unimpaired](https://github.com/tpope/vim-unimpaired)
-
-Pairs of handy bracket mappings.
-
-* `]q` to run `:cnext`.
-* `[q` to run `:cprevious`.
-* `]b` to run `:bnext`.
-* `[b` to run `:bprevious`.
-* `[<space>` to add newlines before the cursor line.
-* `<space>]` to add newlines after the cursor line.
-* `cow` to toggle wrap.
-* `cos` to toggle spell.
-* `coh` to toggle hlsearch.
-* `coi` to toggle ignorecase.
 
 ## [syntastic](https://github.com/scrooloose/syntastic)
 
@@ -350,20 +326,6 @@ Vim motions to the start and end of the current indentation-delimited block.
 * `<leader>[` to move to the beginning of your current indentation-delimited block.
 * `<leader>]` to move to the end of your current indentation-delimited block.
 
-## [VisIncr](https://github.com/vim-scripts/VisIncr)
-
-Produce increasing/decreasing columns of numbers, datas, or daynames.
-
-1. First, select a column using visual-block `<c-v>` and move the cursor.
-2. Second, choose what sort of incremented list you want:
-    * `:I [#]` to use the first line's number as a starting point to build a column of increasing/decreasing numbers.
-    * `:IYMD [#]` year/month/day
-    * `:IMDY [#]` month/day/year
-    * `:IDMY [#]` day/month/year
-        * They use the starting line's date to construct an increasing/decreasing list of dates.
-
-See `:help visincr` to learn more about VisIncr.
-
 ## [ultisnips](https://github.com/SirVer/ultisnips)
 
 The ultimate snippet solution for Vim.
@@ -389,11 +351,6 @@ Emmet for Vim.
 
 See [Emmet](http://docs.emmet.io) official site to learn more abount emmet.
 
-
-ADDITIONAL SYNTAXES
--------------------
-
-* HTML, XML, JSON, Javascript, CSS, SCSS, C, C++, ObjC, Node, Python, Markdown, Nginx.
 
 REFERENCES
 ----------

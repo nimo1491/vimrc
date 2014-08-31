@@ -8,7 +8,11 @@
 " Set the runtime path to include Vundle and initialize {
     set nocompatible
     filetype off
-    set rtp+=~/.vim/bundle/Vundle/
+    if has("win32") || ("win64")
+        set rtp+=$VIM\vimfiles\bundle\Vundle
+    else
+        set rtp+=~/.vim/bundle/Vundle/
+    endif
     call vundle#rc()
 " }
 
@@ -29,7 +33,6 @@
         Plugin 'Lokaltog/vim-easymotion'
         Plugin 'airblade/vim-gitgutter'
         Plugin 'Raimondi/delimitMate'
-        Plugin 'tpope/vim-unimpaired'
         Plugin 'scrooloose/syntastic'
         Plugin 'tomtom/tcomment_vim'
         Plugin 'scrooloose/nerdtree'
@@ -38,18 +41,17 @@
         Plugin 'mileszs/ack.vim'
         Plugin 'kien/ctrlp.vim'
         Plugin 'indent-motion'
-        Plugin 'VisIncr'
+        " Plugin 'VisIncr'
     " }
     " Syntax, Indent {
         Plugin 'othree/javascript-libraries-syntax.vim' " Javascript
         Plugin 'jiangmiao/simple-javascript-indenter'   " Javascript
         Plugin 'jelera/vim-javascript-syntax'           " Javascript
         Plugin 'plasticboy/vim-markdown'                " Markdown
-        Plugin 'cakebaker/scss-syntax.vim'              " SCSS
-        Plugin 'hail2u/vim-css3-syntax'                 " CSS3
+        " Plugin 'cakebaker/scss-syntax.vim'              " SCSS
+        " Plugin 'hail2u/vim-css3-syntax'                 " CSS3
         Plugin 'ap/vim-css-color'                       " CSS color
         Plugin 'othree/html5.vim'                       " HTML5
-        Plugin 'python.vim'                             " Python
         Plugin 'nginx.vim'                              " Nginx
         Plugin 'JSON.vim'                               " JSON
     " }
@@ -66,6 +68,12 @@
         Plugin 'Valloric/YouCompleteMe'         " C related languages and Python
         Plugin 'marijnh/tern_for_vim'           " Javascript
         Plugin 'ahayman/vim-nodejs-complete'    " Node
+        " Alternative of YCM {
+            " Plugin 'ervandew/supertab'              " Perform completions with tab
+            " Plugin 'Rip-Rip/clang_complete'         " C related languages completions
+            " Plugin 'davidhalter/jedi-vim'           " Python completions
+        " }
+    " }
 " }
 
 
@@ -329,12 +337,6 @@
 " VIM Plugins
 "---------------------------------------------------
 " UI {
-    " indentLine {
-        let g:indentLine_color_term = 239
-        let g:indentLine_showFirstIndentLevel = 1
-        nmap <Leader>il :IndentLinesToggle<CR>
-    " }
-    
     " vim-airline {
         let g:airline_theme = "bubblegum"
         let g:airline_left_sep = ""
@@ -425,5 +427,12 @@
         let g:ycm_collect_identifiers_from_tags_files = 1
         let g:ycm_seed_indetifiers_with_syntax = 1
         let g:ycm_confirm_extra_conf = 0
+    " }
+    
+    " Alternative of YCM {
+        " supertab {
+            " let g:SuperTabDefaultCompletionType = "context"
+            " let SuperTabMappingForward = "<leader><tab>"
+        " }
     " }
 " }
