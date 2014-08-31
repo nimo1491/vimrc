@@ -381,6 +381,7 @@
     
     " ack {
         let g:ackprg = "ack"
+        let g:ack_mappings = { "H":"" }
         nm  <leader>ac  :silent execute "Ack! -r ".expand("<cword>")." ./ "<Bar>QFixf<CR>
     " }
     
