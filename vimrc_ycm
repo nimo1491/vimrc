@@ -236,9 +236,9 @@
     cmap w!! w !sudo tee % > /dev/null
 " }
 
-" Move around tabs. conflict with the original screen top/bottom {
-    map <S-H> gT
-    map <S-L> gt
+" Move around tabs {
+    map <leader><leader>h gT
+    map <leader><leader>l gt
 " }
 
 " Allow multiple indentation/deindentation in visual mode {
