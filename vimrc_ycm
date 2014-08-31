@@ -8,7 +8,11 @@
 " Set the runtime path to include Vundle and initialize {
     set nocompatible
     filetype off
-    set rtp+=~/.vim/bundle/Vundle/
+    if has("win32") || ("win64")
+        set rtp+=$VIM\vimfiles\bundle\Vundle
+    else
+        set rtp+=~/.vim/bundle/Vundle/
+    endif
     call vundle#rc()
 " }
 
@@ -66,6 +70,11 @@
         Plugin 'Valloric/YouCompleteMe'         " C related languages and Python
         Plugin 'marijnh/tern_for_vim'           " Javascript
         Plugin 'ahayman/vim-nodejs-complete'    " Node
+        " Alternative of YCM {
+            " Plugin 'ervandew/supertab'              " Perform completions with tab
+            " Plugin 'Rip-Rip/clang_complete'         " C related languages completions
+            " Plugin 'davidhalter/jedi-vim'           " Python completions
+        " }
 " }
 
 
@@ -425,5 +434,12 @@
         let g:ycm_collect_identifiers_from_tags_files = 1
         let g:ycm_seed_indetifiers_with_syntax = 1
         let g:ycm_confirm_extra_conf = 0
+    " }
+    
+    " Alternative of YCM {
+        " supertab {
+            " let g:SuperTabDefaultCompletionType = "context"
+            " let SuperTabMappingForward = "<leader><tab>"
+        " }
     " }
 " }
