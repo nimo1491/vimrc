@@ -141,13 +141,6 @@ Provide emacs-like colorscheme selector buffer.
 * `:SelectColorS` to change themes.
 * `<c-q>` to exit colorselect window.
 
-## [indentLine](https://github.com/Yggdroot/indentLine)
-
-A vim plugin to display the indention levels with thin vertical lines.
-
-##### Customizations:
-* `<leader>il` to toggle indentLine.
-
 ## [vim-airline](https://github.com/bling/vim-airline)
 
 Lean & mean status/tabline for vim that's light as air.
@@ -358,11 +351,6 @@ Emmet for Vim.
 
 See [Emmet](http://docs.emmet.io) official site to learn more abount emmet.
 
-
-ADDITIONAL SYNTAXES
--------------------
-
-* HTML, XML, JSON, Javascript, CSS, SCSS, C, C++, ObjC, Node, Python, Markdown, Nginx.
 
 REFERENCES
 ----------

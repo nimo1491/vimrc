@@ -330,12 +330,6 @@
 " VIM Plugins
 "---------------------------------------------------
 " UI {
-    " indentLine {
-        let g:indentLine_color_term = 239
-        let g:indentLine_showFirstIndentLevel = 1
-        nmap <Leader>il :IndentLinesToggle<CR>
-    " }
-    
     " vim-airline {
         let g:airline_theme = "bubblegum"
         let g:airline_left_sep = ""
