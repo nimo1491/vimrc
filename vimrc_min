@@ -41,7 +41,7 @@
         Plugin 'mileszs/ack.vim'
         Plugin 'kien/ctrlp.vim'
         Plugin 'indent-motion'
-        Plugin 'VisIncr'
+        " Plugin 'VisIncr'
     " }
     " Syntax, Indent {
         Plugin 'othree/javascript-libraries-syntax.vim' " Javascript
