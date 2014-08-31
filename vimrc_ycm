@@ -33,7 +33,6 @@
         Plugin 'Lokaltog/vim-easymotion'
         Plugin 'airblade/vim-gitgutter'
         Plugin 'Raimondi/delimitMate'
-        Plugin 'tpope/vim-unimpaired'
         Plugin 'scrooloose/syntastic'
         Plugin 'tomtom/tcomment_vim'
         Plugin 'scrooloose/nerdtree'
