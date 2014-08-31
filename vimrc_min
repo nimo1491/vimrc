@@ -40,6 +40,7 @@
         Plugin 'majutsushi/tagbar'
         Plugin 'mileszs/ack.vim'
         Plugin 'kien/ctrlp.vim'
+        Plugin 'argtextobj.vim'
         Plugin 'indent-motion'
         " Plugin 'VisIncr'
     " }
@@ -61,6 +62,7 @@
     " }
     " HTML, XML {
         Plugin 'vim-scripts/matchit.zip'
+        Plugin 'gregsexton/MatchTag'
         Plugin 'tpope/vim-ragtag'
         Plugin 'mattn/emmet-vim'
     " }
