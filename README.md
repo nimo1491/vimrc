@@ -78,9 +78,7 @@ To install from command line: `vim +PluginInstall +qall`
 
 The `one-step install` and the above examples are using `vimrc_min` which includes the basic plug-ins.
 
-Try to use `vim_stab` which includes some completion plug-ins. You can trigger completion by press `<leader><tab>`.
-
-`vim_ycm` is similar to `vim_stab` except it uses `YouCompleteMe` to trigger completion automatically.
+Try to use `vim_ycm` which uses `YouCompleteMe` to trigger completion automatically.
 
 **IMPORTANT** `tern_for_vim` and `YouCompleteMe` are needed to be compiled.
 
@@ -213,21 +211,6 @@ Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, e
 * `<leader>j` to move down. 
 * `<leader>l` to move right.
 * `<leader>h` to move left.
-
-## [vim-unimpaired](https://github.com/tpope/vim-unimpaired)
-
-Pairs of handy bracket mappings.
-
-* `]q` to run `:cnext`.
-* `[q` to run `:cprevious`.
-* `]b` to run `:bnext`.
-* `[b` to run `:bprevious`.
-* `[<space>` to add newlines before the cursor line.
-* `<space>]` to add newlines after the cursor line.
-* `cow` to toggle wrap.
-* `cos` to toggle spell.
-* `coh` to toggle hlsearch.
-* `coi` to toggle ignorecase.
 
 ## [syntastic](https://github.com/scrooloose/syntastic)
 
