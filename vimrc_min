@@ -38,7 +38,6 @@
         Plugin 'tomtom/tcomment_vim'
         Plugin 'scrooloose/nerdtree'
         Plugin 'tpope/vim-surround'
-        Plugin 'ervandew/supertab'
         Plugin 'majutsushi/tagbar'
         Plugin 'mileszs/ack.vim'
         Plugin 'kien/ctrlp.vim'
@@ -60,11 +59,15 @@
     " }
     " Snippet {
         Plugin 'honza/vim-snippets'
+        Plugin 'SirVer/ultisnips'
     " }
     " HTML, XML {
         Plugin 'vim-scripts/matchit.zip'
         Plugin 'tpope/vim-ragtag'
         Plugin 'mattn/emmet-vim'
+    " }
+    " Completion {
+        Plugin 'ervandew/supertab'              " Perform completions with tab
     " }
 " }
 
@@ -378,11 +381,6 @@
         nmap  <leader>e :NERDTreeToggle<CR>
     " }
     
-    " supertab {
-        let g:SuperTabDefaultCompletionType = "context"
-        let SuperTabMappingForward = "<leader><tab>"
-    " }
-    
     " tagbar {
         nm  <leader>t :TagbarToggle<CR>
         let g:tagbar_autofocus = 1
@@ -411,5 +409,20 @@
     " nginx {
         au BufRead,BufNewFile /usr/local/etc/nginx/* set ft=nginx
         au BufRead,BufNewFile /etc/nginx/* set ft=nginx
+    " }
+" }
+
+" Snippet {
+    " ultisnips {
+        let g:UltiSnipsExpandTrigger='<leader>/'
+        let g:UltiSnipsJumpForwardTrigger='<leader><tab>'
+        let g:UltiSnipsJumpBackwardTrigger='<leader><leader><tab>'
+    " }
+" }
+
+" Completion {
+    " supertab {
+        let g:SuperTabDefaultCompletionType = "context"
+        let SuperTabMappingForward = "<leader><tab>"
     " }
 " }

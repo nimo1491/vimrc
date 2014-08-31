@@ -75,6 +75,7 @@
             " Plugin 'Rip-Rip/clang_complete'         " C related languages completions
             " Plugin 'davidhalter/jedi-vim'           " Python completions
         " }
+    " }
 " }
 
 
