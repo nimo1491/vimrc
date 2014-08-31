@@ -87,6 +87,7 @@
     set history=50          "keep 50 lines of command line history        
     set autoread            "auto read when file is changed from outside
     set nobackup            "disable backup
+    set noswapfile          "disable swap file
     set ruler               "show the ruler
     set modeline            "enable modeline
     set showmatch           "show matching brackets/parenthesis
