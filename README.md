@@ -71,9 +71,6 @@ Launch `vim` and run `:PluginInstall`
 To install from command line: `vim +PluginInstall +qall`
 
 
-# VIM CUSTOMIZATION
-
-
 ## VIMRC CUSTOMIZATION
 
 The `one-step install` and the above examples are using `vimrc_min` which includes the basic plug-ins.
@@ -212,17 +209,9 @@ Syntax checking hacks for vim.
 ##### Customizations:
 * `<leader>sy` to toggle syntastic.
 
-## [tComment](https://github.com/vim-scripts/tComment)
+## [nerdcommenter](https://github.com/scrooloose/nerdcommenter)
 
-An extensible & universal comment plugin that also handles embedded filetypes.
-
-* `gcc` to toggle comment for the current line.
-* `gc` to toggle comment in visual mode.
-* `<leader>__` to call `:TComment`.
-* `<leader>_p` to comment the current inner paragraph.
-* `<leader>_i` to call `:TCommentInline`.
-* `<leader>_r` to call `:TCommentRight`.
-* `<leader>_b` to call `:TCommentBlock`.
+Vim plugin for intensely orgasmic commenting.
 
 ## [nerdtree](https://github.com/scrooloose/nerdtree)
 
@@ -230,6 +219,10 @@ A tree explorer plugin for vim.
 
 ##### Customizations:
 * `<leader>e` to toggle nerdtree.
+
+## [vim-fugitive](https://github.com/tpope/vim-fugitive)
+
+A Git wrapper so awesome, it should be illegal.
 
 ## [vim-surround](https://github.com/tpope/vim-surround)
 
