@@ -73,10 +73,6 @@ To install from command line: `vim +PluginInstall +qall`
 
 ## VIMRC CUSTOMIZATION
 
-The `one-step install` and the above examples are using `vimrc_min` which includes the basic plug-ins.
-
-Try to use `vim_ycm` which uses `YouCompleteMe` to trigger completion automatically.
-
 **IMPORTANT** `tern_for_vim` and `YouCompleteMe` are needed to be compiled.
 
 * `tern_for_vim`
