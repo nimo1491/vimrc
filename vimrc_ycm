@@ -8,7 +8,7 @@
 " Set the runtime path to include Vundle and initialize {
     set nocompatible
     filetype off
-    if has("win32") || ("win64")
+    if has("win32") || has("win64")
         set rtp+=$VIM\vimfiles\bundle\Vundle
     else
         set rtp+=~/.vim/bundle/Vundle/
@@ -141,7 +141,7 @@
 " }
 
 " Auto reload vimrc when editing it {
-    "if has("win32") || ("win64")
+    "if has("win32") || has("win64")
     "    autocmd! bufwritepost _vimrc source $VIM\_vimrc 
     "else
     "    autocmd! bufwritepost .vimrc source ~/.vimrc    
@@ -389,7 +389,11 @@
     " }
     
     " ack {
-        let g:ackprg = "ack"
+        if has("unix") && !has("mac")
+            let g:ackprg = "ack-grep"
+        else
+            let g:ackprg = "ack"
+        endif
         let g:ack_mappings = { "H":"" }
         nm  <leader>ac  :silent execute "Ack! -r ".expand("<cword>")." ./ "<Bar>QFixf<CR>
     " }
@@ -401,7 +405,7 @@
             \ 'dir':    '\.git$\|\.hg$\|\.svn$',
             \ 'file':   '\.exe$\|\.so$\|\.dll$\|\.bz2$\|\.gz$',
             \ }
-        if has("win32") || ("win64")
+        if has("win32") || has("win64")
             let g:ctrlp_user_command = "dir %s /-n /b /s /a-d"
         else
             let g:ctrlp_user_command = "find %s -type f"

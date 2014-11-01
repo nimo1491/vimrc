@@ -382,7 +382,11 @@
     " }
     
     " ack {
-        let g:ackprg = "ack"
+        if has("unix") && !has("mac")
+            let g:ackprg = "ack-grep"
+        else
+            let g:ackprg = "ack"
+        endif
         let g:ack_mappings = { "H":"" }
         nm  <leader>ac  :silent execute "Ack! -r ".expand("<cword>")." ./ "<Bar>QFixf<CR>
     " }
