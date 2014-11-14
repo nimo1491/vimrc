@@ -357,6 +357,10 @@
         nmap <c-Y> <Plug>yankstack_substitute_newer_paste
     " }
     
+    " nerdcommenter {
+        let NERDSpaceDelims = 1
+    " }
+
     " vim-easy-align {
         vmap <Enter> <Plug>(EasyAlign)
         nmap <Leader>a <Plug>(EasyAlign)
@@ -408,8 +412,8 @@
         let g:ctrlp_map = "<leader>p"
         let g:ctrlp_working_path_mode = 0
         let g:ctrlp_custom_ignore = {
-            \ 'dir':    '\.git$\|\.hg$\|\.svn$',
-            \ 'file':   '\.exe$\|\.so$\|\.dll$\|\.bz2$\|\.gz$',
+            \ 'dir':    '\node_modules$\|.git$\|\.hg$\|\.svn$',
+            \ 'file':   '\.exe$\|\.so$\|\.dll$\|\.bz2$\|\.gz$\.DS_Store$\|\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.svg$',
             \ }
         if has("win32") || has("win64")
             let g:ctrlp_user_command = "dir %s /-n /b /s /a-d"
