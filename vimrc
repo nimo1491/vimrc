@@ -28,7 +28,7 @@
     " }
     " Basic {
         Plugin 'terryma/vim-multiple-cursors'
-        Plugin 'maxbrunsfeld/vim-yankstack'
+        " Plugin 'maxbrunsfeld/vim-yankstack'    " Conflict with vim-sneak
         Plugin 'scrooloose/nerdcommenter'
         Plugin 'junegunn/vim-easy-align'
         Plugin 'Lokaltog/vim-easymotion'
@@ -38,6 +38,7 @@
         Plugin 'scrooloose/nerdtree'
         Plugin 'tpope/vim-surround'
         Plugin 'tpope/vim-fugitive'
+        Plugin 'justinmk/vim-sneak'
         Plugin 'majutsushi/tagbar'
         Plugin 'mileszs/ack.vim'
         Plugin 'kien/ctrlp.vim'
@@ -382,6 +383,10 @@
     
     " nerdtree {
         nmap  <leader>e :NERDTreeToggle<CR>
+    " }
+    
+    " sneak {
+        let g:sneak#streak = 1
     " }
     
     " tagbar {
