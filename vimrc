@@ -69,9 +69,13 @@
         Plugin 'mattn/emmet-vim'
     " }
     " Completion {
-        Plugin 'Valloric/YouCompleteMe'         " C related languages and Python
+        Plugin 'L9'         
+        Plugin 'AutoComplPop'         
         Plugin 'marijnh/tern_for_vim'           " Javascript
         Plugin 'ahayman/vim-nodejs-complete'    " Node
+        " Alternative of AutoComplPop {
+            " Plugin 'Valloric/YouCompleteMe'         " C related languages and Python
+        " }
         " Alternative of YCM {
             " Plugin 'ervandew/supertab'              " Perform completions with tab
             " Plugin 'Rip-Rip/clang_complete'         " C related languages completions
@@ -438,19 +442,21 @@
 " }
 
 " Completion {
-    " YouCompleteMe {
-        let g:ycm_always_populate_location_list = 0
-        let g:ycm_show_diagnostics_ui = 0
-        let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-        let g:ycm_collect_identifiers_from_tags_files = 1
-        let g:ycm_seed_indetifiers_with_syntax = 1
-        let g:ycm_confirm_extra_conf = 0
+    " Alternative of AutoComplPop {
+        " YouCompleteMe {
+            " let g:ycm_always_populate_location_list = 0
+            " let g:ycm_show_diagnostics_ui = 0
+            " let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+            " let g:ycm_collect_identifiers_from_tags_files = 1
+            " let g:ycm_seed_indetifiers_with_syntax = 1
+            " let g:ycm_confirm_extra_conf = 0
+        " }
     " }
     
     " Alternative of YCM {
         " supertab {
-            " let g:SuperTabDefaultCompletionType = "context"
-            " let SuperTabMappingForward = "<leader><tab>"
+            " let g:SuperTabDefaultCompletionType = 'context'
+            " let SuperTabMappingForward = '<leader><tab>'
         " }
     " }
 " }
