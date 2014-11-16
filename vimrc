@@ -32,9 +32,9 @@
         Plugin 'junegunn/vim-easy-align'
         Plugin 'Lokaltog/vim-easymotion'
         Plugin 'airblade/vim-gitgutter'
-        Plugin 'tomtom/tcomment_vim'
         Plugin 'Raimondi/delimitMate'
         Plugin 'scrooloose/syntastic'
+        Plugin 'tomtom/tcomment_vim'
         Plugin 'scrooloose/nerdtree'
         Plugin 'tpope/vim-surround'
         Plugin 'tpope/vim-fugitive'
@@ -43,11 +43,11 @@
         Plugin 'mileszs/ack.vim'
         Plugin 'kien/ctrlp.vim'
         Plugin 'argtextobj.vim'
-        Plugin 'SyntaxComplete'
         Plugin 'indent-motion'
         " Plugin 'VisIncr'
     " }
     " Syntax, Indent {
+        Plugin 'SyntaxComplete'
         Plugin 'othree/javascript-libraries-syntax.vim' " Javascript
         Plugin 'jiangmiao/simple-javascript-indenter'   " Javascript
         Plugin 'jelera/vim-javascript-syntax'           " Javascript
