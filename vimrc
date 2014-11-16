@@ -75,7 +75,7 @@
         Plugin 'L9'         
         Plugin 'othree/vim-autocomplpop'         
         Plugin 'marijnh/tern_for_vim'           " Javascript
-        Plugin 'ahayman/vim-nodejs-complete'    " Node
+        " Plugin 'ahayman/vim-nodejs-complete'    " Node
         " Alternative of AutoComplPop {
             " Plugin 'Valloric/YouCompleteMe'         " C related languages and Python
         " }
