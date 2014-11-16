@@ -29,10 +29,10 @@
     " Basic {
         Plugin 'terryma/vim-multiple-cursors'
         " Plugin 'maxbrunsfeld/vim-yankstack'    " Conflict with vim-sneak
-        Plugin 'scrooloose/nerdcommenter'
         Plugin 'junegunn/vim-easy-align'
         Plugin 'Lokaltog/vim-easymotion'
         Plugin 'airblade/vim-gitgutter'
+        Plugin 'tomtom/tcomment_vim'
         Plugin 'Raimondi/delimitMate'
         Plugin 'scrooloose/syntastic'
         Plugin 'scrooloose/nerdtree'
@@ -357,10 +357,6 @@
         nmap <c-Y> <Plug>yankstack_substitute_newer_paste
     " }
     
-    " nerdcommenter {
-        let NERDSpaceDelims = 1
-    " }
-
     " vim-easy-align {
         vmap <Enter> <Plug>(EasyAlign)
         nmap <Leader>a <Plug>(EasyAlign)
