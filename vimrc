@@ -43,6 +43,7 @@
         Plugin 'mileszs/ack.vim'
         Plugin 'kien/ctrlp.vim'
         Plugin 'argtextobj.vim'
+        Plugin 'SyntaxComplete'
         Plugin 'indent-motion'
         " Plugin 'VisIncr'
     " }
@@ -59,8 +60,10 @@
         Plugin 'JSON.vim'                               " JSON
     " }
     " Snippet {
+        Plugin 'MarcWeber/vim-addon-mw-utils.git'
+        Plugin 'tomtom/tlib_vim.git'
+        Plugin 'garbas/vim-snipmate'
         Plugin 'honza/vim-snippets'
-        Plugin 'SirVer/ultisnips'
     " }
     " HTML, XML {
         Plugin 'vim-scripts/matchit.zip'
@@ -70,7 +73,7 @@
     " }
     " Completion {
         Plugin 'L9'         
-        Plugin 'AutoComplPop'         
+        Plugin 'othree/vim-autocomplpop'         
         Plugin 'marijnh/tern_for_vim'           " Javascript
         Plugin 'ahayman/vim-nodejs-complete'    " Node
         " Alternative of AutoComplPop {
@@ -433,15 +436,16 @@
     " }
 " }
 
-" Snippet {
-    " ultisnips {
-        let g:UltiSnipsExpandTrigger='<leader>/'
-        let g:UltiSnipsJumpForwardTrigger='<leader><tab>'
-        let g:UltiSnipsJumpBackwardTrigger='<leader><leader><tab>'
-    " }
-" }
-
 " Completion {
+    " AutoComplPop {
+        let g:acp_enableAtStartup = 1
+        let g:acp_completeOption = '.,w,b,u,t,i,k'
+        let g:acp_behaviorSnipmateLength = 1
+        let g:acp_behaviorUserDefinedMeets = 'acp#meetsForKeyword'
+        let g:acp_behaviorUserDefinedFunction = 'syntaxcomplete#Complete'
+        let g:omni_syntax_use_iskeyword = 0
+    " }
+
     " Alternative of AutoComplPop {
         " YouCompleteMe {
             " let g:ycm_always_populate_location_list = 0
