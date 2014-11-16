@@ -31,13 +31,18 @@ $VIM +PluginInstall +qall
 git submodule update
 
 # npm install tern
-echo "check npm first"
-if "npm" > /dev/null 2>&1; then
-    echo "npm exists..."
-    echo "install tern_for_vim..."
-    cd bundle/tern_for_vim/
-    npm install
-else
-    echo "npm doesn't exist..."
-    echo "skip install tern_for_vim..."
-fi
+echo "install tern_for_vim..."
+cd bundle/tern_for_vim/
+npm install > /dev/null 2>&1
+cd ..
+echo "done"
+# echo "check npm first"
+# if "npm" > /dev/null 2>&1; then
+#     echo "npm exists..."
+#     echo "install tern_for_vim..."
+#     cd bundle/tern_for_vim/
+#     npm install
+# else
+#     echo "npm doesn't exist..."
+#     echo "skip install tern_for_vim..."
+# fi
