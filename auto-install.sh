@@ -16,7 +16,6 @@ die() {
 
 git clone https://github.com/nimo1491/vimrc.git "$VIMHOME"
 cd "$VIMHOME"
-cp -f vimrc_min vimrc
 git submodule update --init
 
 ./install.sh

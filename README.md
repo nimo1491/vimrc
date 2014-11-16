@@ -71,29 +71,7 @@ Launch `vim` and run `:PluginInstall`
 To install from command line: `vim +PluginInstall +qall`
 
 
-# VIM CUSTOMIZATION
-
-
 ## VIMRC CUSTOMIZATION
-
-The `one-step install` and the above examples are using `vimrc_min` which includes the basic plug-ins.
-
-Try to use `vim_ycm` which uses `YouCompleteMe` to trigger completion automatically.
-
-**IMPORTANT** `tern_for_vim` and `YouCompleteMe` are needed to be compiled.
-
-* `tern_for_vim`
-```bash
-$ cd ~/.vim/bundle/tern_for_vim
-$ npm install
-```
-
-* `YouCompleteMe`
-```bash
-$ cd ~/.vim/bundle/YouCompleteMe
-$ ./install.sh --clang-completer
-```
-
 
 ## KEY BINDING
 
@@ -212,17 +190,9 @@ Syntax checking hacks for vim.
 ##### Customizations:
 * `<leader>sy` to toggle syntastic.
 
-## [tComment](https://github.com/vim-scripts/tComment)
+## [tcomment_vim](https://github.com/tomtom/tcomment_vim)
 
-An extensible & universal comment plugin that also handles embedded filetypes.
-
-* `gcc` to toggle comment for the current line.
-* `gc` to toggle comment in visual mode.
-* `<leader>__` to call `:TComment`.
-* `<leader>_p` to comment the current inner paragraph.
-* `<leader>_i` to call `:TCommentInline`.
-* `<leader>_r` to call `:TCommentRight`.
-* `<leader>_b` to call `:TCommentBlock`.
+An extensible & universal comment vim-plugin that also handles embedded filetypes.
 
 ## [nerdtree](https://github.com/scrooloose/nerdtree)
 
@@ -276,12 +246,13 @@ Emphasize hello: `ysiw<em>`
 <em>Hello</em> world!
 ```
 
-## [supertab](https://github.com/ervandew/supertab)
+## [vim-fugitive](https://github.com/tpope/vim-fugitive)
 
-Perform all your vim insert mode completions with Tab.
+A Git wrapper so awesome, it should be illegal.
 
-##### Customizations:
-* `<leader><tab>` to toggle supertab.
+## [vim-sneak](https://github.com/justinmk/vim-sneak)
+
+The missing motion for Vim.
 
 ## [tagbar](https://github.com/majutsushi/tagbar)
 
@@ -318,13 +289,6 @@ Fuzzy file, buffer, mru, tag, etc finder.
 ##### Customizations:
 * `<leader>p` to toggle ctrlp.
 
-## [indent-motion](https://github.com/vim-scripts/indent_motion)
-
-Vim motions to the start and end of the current indentation-delimited block.
-
-* `<leader>[` to move to the beginning of your current indentation-delimited block.
-* `<leader>]` to move to the end of your current indentation-delimited block.
-
 ## [argtextobj.vim](https://github.com/vim-scripts/argtextobj.vim)
 
 Text-object like motion for arguments.
@@ -333,15 +297,20 @@ Text-object like motion for arguments.
 * `cia` change inner argument.
 * `via` select inner argument.
 
-## [ultisnips](https://github.com/SirVer/ultisnips)
+## [indent-motion](https://github.com/vim-scripts/indent_motion)
 
-The ultimate snippet solution for Vim.
+Vim motions to the start and end of the current indentation-delimited block.
 
-* `<leader>/` to trigger snippets.
+* `<leader>[` to move to the beginning of your current indentation-delimited block.
+* `<leader>]` to move to the end of your current indentation-delimited block.
 
 ## [matchit](https://github.com/vim-scripts/matchit.zip)
 
 Extended % matching for HTML, LaTeX, and many other languages.
+
+## [MatchTag](https://github.com/gregsexton/MatchTag)
+
+Vim's MatchParen for HTML tags.
 
 ## [vim-ragtag](https://github.com/tpope/vim-ragtag)
 
@@ -349,10 +318,6 @@ Ghetto HTML/XML mappings.
 
 * `<c-x><space>` to add closing tag on the same line.
 * `<c-x><enter>` to add closing tag separated by a newline.
-
-## [MatchTag](https://github.com/gregsexton/MatchTag)
-
-Vim's MatchParen for HTML tags.
 
 ## [emmet-vim](https://github.com/mattn/emmet-vim)
 

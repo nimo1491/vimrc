@@ -8,7 +8,7 @@
 " Set the runtime path to include Vundle and initialize {
     set nocompatible
     filetype off
-    if has("win32") || ("win64")
+    if has("win32") || has("win64")
         set rtp+=$VIM\vimfiles\bundle\Vundle
     else
         set rtp+=~/.vim/bundle/Vundle/
@@ -28,7 +28,7 @@
     " }
     " Basic {
         Plugin 'terryma/vim-multiple-cursors'
-        Plugin 'maxbrunsfeld/vim-yankstack'
+        " Plugin 'maxbrunsfeld/vim-yankstack'    " Conflict with vim-sneak
         Plugin 'junegunn/vim-easy-align'
         Plugin 'Lokaltog/vim-easymotion'
         Plugin 'airblade/vim-gitgutter'
@@ -37,6 +37,8 @@
         Plugin 'tomtom/tcomment_vim'
         Plugin 'scrooloose/nerdtree'
         Plugin 'tpope/vim-surround'
+        Plugin 'tpope/vim-fugitive'
+        Plugin 'justinmk/vim-sneak'
         Plugin 'majutsushi/tagbar'
         Plugin 'mileszs/ack.vim'
         Plugin 'kien/ctrlp.vim'
@@ -45,6 +47,7 @@
         " Plugin 'VisIncr'
     " }
     " Syntax, Indent {
+        Plugin 'SyntaxComplete'
         Plugin 'othree/javascript-libraries-syntax.vim' " Javascript
         Plugin 'jiangmiao/simple-javascript-indenter'   " Javascript
         Plugin 'jelera/vim-javascript-syntax'           " Javascript
@@ -57,8 +60,10 @@
         Plugin 'JSON.vim'                               " JSON
     " }
     " Snippet {
+        Plugin 'MarcWeber/vim-addon-mw-utils.git'
+        Plugin 'tomtom/tlib_vim.git'
+        Plugin 'garbas/vim-snipmate'
         Plugin 'honza/vim-snippets'
-        Plugin 'SirVer/ultisnips'
     " }
     " HTML, XML {
         Plugin 'vim-scripts/matchit.zip'
@@ -67,9 +72,13 @@
         Plugin 'mattn/emmet-vim'
     " }
     " Completion {
-        Plugin 'Valloric/YouCompleteMe'         " C related languages and Python
+        Plugin 'L9'         
+        Plugin 'othree/vim-autocomplpop'         
         Plugin 'marijnh/tern_for_vim'           " Javascript
-        Plugin 'ahayman/vim-nodejs-complete'    " Node
+        " Plugin 'ahayman/vim-nodejs-complete'    " Node
+        " Alternative of AutoComplPop {
+            " Plugin 'Valloric/YouCompleteMe'         " C related languages and Python
+        " }
         " Alternative of YCM {
             " Plugin 'ervandew/supertab'              " Perform completions with tab
             " Plugin 'Rip-Rip/clang_complete'         " C related languages completions
@@ -141,7 +150,7 @@
 " }
 
 " Auto reload vimrc when editing it {
-    "if has("win32") || ("win64")
+    "if has("win32") || has("win64")
     "    autocmd! bufwritepost _vimrc source $VIM\_vimrc 
     "else
     "    autocmd! bufwritepost .vimrc source ~/.vimrc    
@@ -383,13 +392,21 @@
         nmap  <leader>e :NERDTreeToggle<CR>
     " }
     
+    " sneak {
+        let g:sneak#streak = 1
+    " }
+    
     " tagbar {
         nm  <leader>t :TagbarToggle<CR>
         let g:tagbar_autofocus = 1
     " }
     
     " ack {
-        let g:ackprg = "ack"
+        if has("unix") && !has("mac")
+            let g:ackprg = "ack-grep"
+        else
+            let g:ackprg = "ack"
+        endif
         let g:ack_mappings = { "H":"" }
         nm  <leader>ac  :silent execute "Ack! -r ".expand("<cword>")." ./ "<Bar>QFixf<CR>
     " }
@@ -398,10 +415,10 @@
         let g:ctrlp_map = "<leader>p"
         let g:ctrlp_working_path_mode = 0
         let g:ctrlp_custom_ignore = {
-            \ 'dir':    '\.git$\|\.hg$\|\.svn$',
-            \ 'file':   '\.exe$\|\.so$\|\.dll$\|\.bz2$\|\.gz$',
+            \ 'dir':    '\node_modules$\|.git$\|\.hg$\|\.svn$',
+            \ 'file':   '\.exe$\|\.so$\|\.dll$\|\.bz2$\|\.gz$\.DS_Store$\|\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.svg$',
             \ }
-        if has("win32") || ("win64")
+        if has("win32") || has("win64")
             let g:ctrlp_user_command = "dir %s /-n /b /s /a-d"
         else
             let g:ctrlp_user_command = "find %s -type f"
@@ -419,28 +436,31 @@
     " }
 " }
 
-" Snippet {
-    " ultisnips {
-        let g:UltiSnipsExpandTrigger='<leader>/'
-        let g:UltiSnipsJumpForwardTrigger='<leader><tab>'
-        let g:UltiSnipsJumpBackwardTrigger='<leader><leader><tab>'
-    " }
-" }
-
 " Completion {
-    " YouCompleteMe {
-        let g:ycm_always_populate_location_list = 0
-        let g:ycm_show_diagnostics_ui = 0
-        let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-        let g:ycm_collect_identifiers_from_tags_files = 1
-        let g:ycm_seed_indetifiers_with_syntax = 1
-        let g:ycm_confirm_extra_conf = 0
+    " AutoComplPop {
+        let g:acp_enableAtStartup = 1
+        let g:acp_completeOption = '.,w,b,u,t,i,k'
+        let g:acp_behaviorSnipmateLength = 1
+        let g:acp_behaviorUserDefinedMeets = 'acp#meetsForKeyword'
+        let g:acp_behaviorUserDefinedFunction = 'syntaxcomplete#Complete'
+        let g:omni_syntax_use_iskeyword = 0
+    " }
+
+    " Alternative of AutoComplPop {
+        " YouCompleteMe {
+            " let g:ycm_always_populate_location_list = 0
+            " let g:ycm_show_diagnostics_ui = 0
+            " let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+            " let g:ycm_collect_identifiers_from_tags_files = 1
+            " let g:ycm_seed_indetifiers_with_syntax = 1
+            " let g:ycm_confirm_extra_conf = 0
+        " }
     " }
     
     " Alternative of YCM {
         " supertab {
-            " let g:SuperTabDefaultCompletionType = "context"
-            " let SuperTabMappingForward = "<leader><tab>"
+            " let g:SuperTabDefaultCompletionType = 'context'
+            " let SuperTabMappingForward = '<leader><tab>'
         " }
     " }
 " }

@@ -27,8 +27,16 @@ echo "install plugins..."
 cd $VIMPF
 $VIM +PluginInstall +qall
 
+# update submodule
+git submodule update
+
 # npm install tern
-# check npm first
+echo "install tern_for_vim..."
+cd bundle/tern_for_vim/
+npm install > /dev/null 2>&1
+cd ..
+echo "done"
+# echo "check npm first"
 # if "npm" > /dev/null 2>&1; then
 #     echo "npm exists..."
 #     echo "install tern_for_vim..."
@@ -36,5 +44,5 @@ $VIM +PluginInstall +qall
 #     npm install
 # else
 #     echo "npm doesn't exist..."
-#     echo "failed to install tern_for_vim..."
+#     echo "skip install tern_for_vim..."
 # fi
