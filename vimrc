@@ -40,7 +40,7 @@
         Plugin 'tpope/vim-fugitive'
         Plugin 'justinmk/vim-sneak'
         Plugin 'majutsushi/tagbar'
-        Plugin 'mileszs/ack.vim'
+        Plugin 'rking/ag.vim'
         Plugin 'kien/ctrlp.vim'
         Plugin 'argtextobj.vim'
         Plugin 'indent-motion'
@@ -401,14 +401,10 @@
         let g:tagbar_autofocus = 1
     " }
     
-    " ack {
-        if has("unix") && !has("mac")
-            let g:ackprg = "ack-grep"
-        else
-            let g:ackprg = "ack"
-        endif
-        let g:ack_mappings = { "H":"" }
-        nm  <leader>ac  :silent execute "Ack! -r ".expand("<cword>")." ./ "<Bar>QFixf<CR>
+    " ag {
+        let g:agprg = "ag"
+        let g:ag_mappings = { "H":"" }
+        nm  <leader>ag  :silent execute "Ag! --column -r ".expand("<cword>")." ./ "<Bar>QFixf<CR>
     " }
     
     " ctrlp {
