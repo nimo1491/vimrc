@@ -1,11 +1,11 @@
 " gvim and macvim {
     if has("gui_running")
-        colors  desertExN               "scheme
-        set     cursorline              "highlight current line
+        colors  desertExN                   "scheme
+        set     cursorline                  "highlight current line
+        set gfn=Sauce\ Code\ Powerline:h16  "font
         if has("gui_macvim")
-            set gfn=Osaka-Mono:h20      "font
+            "do nothing
         else
-            set gfn=Consolas:h12        "font
             set guioptions-=T           "remove toolbar
             " if you want english {
                 language    mes en

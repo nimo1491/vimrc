@@ -350,10 +350,9 @@
 "---------------------------------------------------
 " UI {
     " vim-airline {
-        let g:airline_theme = "bubblegum"
-        let g:airline_left_sep = ""
-        let g:airline_right_sep = ""
-        let g:airline_detect_whitespace = 0
+        let g:airline_theme = "tomorrow"
+        let g:airline_powerline_fonts = 1
+        let g:airline#extensions#whitespace#enabled = 0
     " }
 " }
 
