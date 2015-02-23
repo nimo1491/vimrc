@@ -418,6 +418,7 @@
         else
             let g:ctrlp_user_command = "find %s -type f"
         endif
+        nm  <leader>b :CtrlPBuffer<CR>
     " }
 " }
 
