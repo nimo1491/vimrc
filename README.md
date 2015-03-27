@@ -78,7 +78,7 @@ To install from command line: `vim +PluginInstall +qall`
 * `<leader>` - ','   
 * `:cd.` - Change working directory to that of current file   
 * `<leader>/` - Turn off searching highlighting   
-* `<leader>p` - Toggles paste mode   
+* `<leader><leader>p` - Toggles paste mode   
 * `:w!!` - Force writing if you forgot to sudo   
 * `<s-h>` - Switch to previous tab   
 * `<s-l>` - Switch to next tab   
@@ -124,7 +124,7 @@ Provide emacs-like colorscheme selector buffer.
 Lean & mean status/tabline for vim that's light as air.
 
 ##### Customizations:
-* Set theme to `bubblegum`.
+* Set theme to `tomorrow`.
 
 ## [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
 
@@ -275,6 +275,7 @@ Vim plugin for the Perl module/CLI script 'ack'.
 
 ##### Customizations:
 * `<leader>ac` to ack the current word.
+* Replace `ack` to `ag`
 
 ## [ctrlp](https://github.com/kien/ctrlp.vim)
 
