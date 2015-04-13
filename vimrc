@@ -222,6 +222,9 @@
     au FileType html,javascript,css,ejs,python,ruby,java setlocal ts=2 sts=2 sw=2
 " }
 
+" Handlebars {
+    au BufNewFile,BufRead *.handlebars set filetype=html
+" }
 
 "---------------------------------------------------
 " VIM Key Mappings
