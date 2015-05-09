@@ -28,7 +28,7 @@
     " }
     " Basic {
         Plugin 'terryma/vim-multiple-cursors'
-        " Plugin 'maxbrunsfeld/vim-yankstack'    " Conflict with vim-sneak
+        Plugin 'maxbrunsfeld/vim-yankstack'    
         Plugin 'junegunn/vim-easy-align'
         Plugin 'Lokaltog/vim-easymotion'
         Plugin 'airblade/vim-gitgutter'
@@ -38,22 +38,22 @@
         Plugin 'scrooloose/nerdtree'
         Plugin 'tpope/vim-surround'
         Plugin 'tpope/vim-fugitive'
-        Plugin 'justinmk/vim-sneak'
+        " Plugin 'justinmk/vim-sneak'       " conflict with vim-yankstack
         Plugin 'majutsushi/tagbar'
         Plugin 'mileszs/ack.vim'
         Plugin 'kien/ctrlp.vim'
         Plugin 'argtextobj.vim'
         Plugin 'indent-motion'
-        " Plugin 'VisIncr'
+        Plugin 'VisIncr'
     " }
     " Syntax, Indent {
         Plugin 'SyntaxComplete'
         Plugin 'othree/javascript-libraries-syntax.vim' " Javascript
         Plugin 'jiangmiao/simple-javascript-indenter'   " Javascript
-        Plugin 'jelera/vim-javascript-syntax'           " Javascript
+        " Plugin 'jelera/vim-javascript-syntax'           " Javascript
+        Plugin 'othree/yajs.vim'                        " Javascript
         Plugin 'plasticboy/vim-markdown'                " Markdown
-        " Plugin 'cakebaker/scss-syntax.vim'              " SCSS
-        " Plugin 'hail2u/vim-css3-syntax'                 " CSS3
+        Plugin 'hail2u/vim-css3-syntax'                 " CSS3
         Plugin 'ap/vim-css-color'                       " CSS color
         Plugin 'othree/html5.vim'                       " HTML5
         Plugin 'nginx.vim'                              " Nginx
