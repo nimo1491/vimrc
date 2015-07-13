@@ -27,6 +27,7 @@
         Plugin 'bling/vim-airline'
     " }
     " Basic {
+        Plugin 'editorconfig/editorconfig-vim'
         Plugin 'terryma/vim-multiple-cursors'
         Plugin 'maxbrunsfeld/vim-yankstack'    
         Plugin 'junegunn/vim-easy-align'
@@ -218,8 +219,8 @@
 "---------------------------------------------------
 " Language Specific Indent
 "---------------------------------------------------
-" HTML/CSS/Javascript/Python/Ruby/Java indent settings {
-    au FileType html,javascript,css,ejs,python,ruby,java setlocal ts=2 sts=2 sw=2
+" HTML/CSS/Javascript/Ruby/Java indent settings {
+    au FileType html,javascript,css,ejs,ruby,java setlocal ts=2 sts=2 sw=2
 " }
 
 " Handlebars {
@@ -360,6 +361,10 @@
 " }
 
 " Basic {
+    " editorconfig-vim {
+        let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+    " }
+
     " vim-yankstack {
         let g:yankstack_map_keys = 0
         nmap <c-y> <Plug>yankstack_substitute_older_paste
@@ -369,6 +374,14 @@
     " vim-easy-align {
         vmap <Enter> <Plug>(EasyAlign)
         nmap <Leader>a <Plug>(EasyAlign)
+    " }
+
+    " vim-easymotion {
+        let g:EasyMotion_smartcase = 1
+    " }
+
+    " vim-gitgutter {
+        let g:gitgutter_max_signs = 50000
     " }
     
     " delimitMate {
