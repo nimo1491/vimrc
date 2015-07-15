@@ -96,7 +96,8 @@
     set nocompatible        "not compatible with the old-fashion vi mode        
     set bg=dark             "set dark background
     set bs=2                "equals bs=indent,eol,start     
-    set history=50          "keep 50 lines of command line history        
+    set history=500         "keep 500 lines of command line history        
+    set undolevels=100      "Remember 100 changes
     set autoread            "auto read when file is changed from outside
     set nobackup            "disable backup
     set noswapfile          "disable swap file
@@ -107,6 +108,8 @@
     set number              "line number on
     set mat=15              "how many tenths of a second to blink
     set ff=unix             "force newline = 0x0a
+    set viminfo=            "disable .viminfo file
+    set ttyfast             "send more chars while redrawing
     " set scroll options {
         set scrolljump=1    "lines to scroll when cursor leaves screen
         set scrolloff=6     "minimum lines to keey above and below cursor
