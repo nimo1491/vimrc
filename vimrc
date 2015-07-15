@@ -17,7 +17,7 @@
 " }
 
 " Let Vundle manage Vundle, required {
-    Plugin 'gmarik/vundle'
+    Plugin 'gmarik/Vundle'
 " }
 
 " Vundle plugins {
