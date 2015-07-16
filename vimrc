@@ -108,7 +108,7 @@
     set number              "line number on
     set mat=15              "how many tenths of a second to blink
     set ff=unix             "force newline = 0x0a
-    set viminfo=            "disable .viminfo file
+    " set viminfo=            "disable .viminfo file
     set ttyfast             "send more chars while redrawing
     " set scroll options {
         set scrolljump=1    "lines to scroll when cursor leaves screen
@@ -455,7 +455,7 @@
     " AutoComplPop {
         let g:acp_enableAtStartup = 1
         let g:acp_completeOption = '.,w,b,u,t,i,k'
-        let g:acp_behaviorSnipmateLength = 1
+        " let g:acp_behaviorSnipmateLength = 1 
         let g:acp_behaviorUserDefinedMeets = 'acp#meetsForKeyword'
         let g:acp_behaviorUserDefinedFunction = 'syntaxcomplete#Complete'
         let g:omni_syntax_use_iskeyword = 0
