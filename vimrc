@@ -426,7 +426,7 @@
     " }
     
     " ctrlp {
-        let g:ctrlp_map = "<leader>p"
+        let g:ctrlp_map = "<leader>f"
         let g:ctrlp_working_path_mode = 0
         let g:ctrlp_custom_ignore = {
             \ 'dir':    '\node_modules$\|.git$\|\.hg$\|\.svn$',
