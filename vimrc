@@ -242,7 +242,7 @@
     cmap cd. lcd %:p:h
 " }
 
-" Trun off search highlighting {
+" Turn off search highlighting {
     nmap <leader>/ :nohl<CR>
 " }
 
