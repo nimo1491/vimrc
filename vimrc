@@ -369,6 +369,7 @@
     " }
 
     " vim-yankstack {
+        call yankstack#setup()
         let g:yankstack_map_keys = 0
         nmap <c-y> <Plug>yankstack_substitute_older_paste
         nmap <c-Y> <Plug>yankstack_substitute_newer_paste
@@ -381,6 +382,7 @@
 
     " vim-easymotion {
         let g:EasyMotion_smartcase = 1
+        nmap s <Plug>(easymotion-s2)
     " }
 
     " vim-gitgutter {
