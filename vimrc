@@ -3,7 +3,7 @@
 
 
 "---------------------------------------------------
-" Vundle 
+" Vundle
 "---------------------------------------------------
 " Set the runtime path to include Vundle and initialize {
     set nocompatible
@@ -29,7 +29,7 @@
     " Basic {
         Plugin 'editorconfig/editorconfig-vim'
         Plugin 'terryma/vim-multiple-cursors'
-        Plugin 'maxbrunsfeld/vim-yankstack'    
+        Plugin 'maxbrunsfeld/vim-yankstack'
         Plugin 'junegunn/vim-easy-align'
         Plugin 'Lokaltog/vim-easymotion'
         Plugin 'airblade/vim-gitgutter'
@@ -73,8 +73,8 @@
         Plugin 'mattn/emmet-vim'
     " }
     " Completion {
-        Plugin 'L9'         
-        Plugin 'othree/vim-autocomplpop'         
+        Plugin 'L9'
+        Plugin 'othree/vim-autocomplpop'
         Plugin 'marijnh/tern_for_vim'           " Javascript
         " Plugin 'ahayman/vim-nodejs-complete'    " Node
         " Alternative of AutoComplPop {
@@ -93,10 +93,10 @@
 " VIM Basic and UI
 "---------------------------------------------------
 " General Settings {
-    set nocompatible        "not compatible with the old-fashion vi mode        
+    set nocompatible        "not compatible with the old-fashion vi mode
     set bg=dark             "set dark background
-    set bs=2                "equals bs=indent,eol,start     
-    set history=500         "keep 500 lines of command line history        
+    set bs=2                "equals bs=indent,eol,start
+    set history=500         "keep 500 lines of command line history
     set undolevels=100      "Remember 100 changes
     set autoread            "auto read when file is changed from outside
     set nobackup            "disable backup
@@ -110,6 +110,9 @@
     set ff=unix             "force newline = 0x0a
     " set viminfo=            "disable .viminfo file
     set ttyfast             "send more chars while redrawing
+    set lazyredraw          "don't redraw while exectuing macros
+    set mouse=a             "enable mouse
+    " set colorcolumn=80      "seperate list of screen columns
     " set scroll options {
         set scrolljump=1    "lines to scroll when cursor leaves screen
         set scrolloff=6     "minimum lines to keey above and below cursor
@@ -120,28 +123,34 @@
         set smartcase       "ignore case if search pattern is all lowercase
         set ignorecase      "case insensitive search
     " }
+    " Show tabs and end of line {
+        set list
+        set listchars=tab:▹\ ,trail:▵
+        " set listchars=tab:\|\
+    " }
 " }
 
 " Set wild options {
-    set  wildmenu       
+    set  wildmenu
     set  wildmode=longest,list
     set  wildignore+=*.o,*.class,*.pyc,*.a,*.so,*.obj,*.exe,*.lib,*.ncb,*.opt,*.plg,.svn,.git
     set  winaltkeys=no
 " }
 
 " Formatting {
-    set wrap                "wrap long lines
+    set wrap                    "wrap long lines
+    set whichwrap=b,s,<,>,[,]   "move smoothly between lines
     " Set indent options {
-        set autoindent      "indent at the same level of the previous line
-        set smartindent     "advanced auto indent, remember to enable autoindent 
-        set copyindent      "copy the previous indentation on autoindenting
+        set autoindent          "indent at the same level of the previous line
+        set smartindent         "advanced auto indent, remember to enable autoindent
+        set copyindent          "copy the previous indentation on autoindenting
     " }
     " Set tab options {
-        set smarttab        "insert tabs on the start of a line according to contect
-        set expandtab       "replace <TAB> with spaces
-        set shiftwidth=4    "use indents of 4 spaces
-        set tabstop=4       "an indentation every four columns
-        set softtabstop=4   "let backspace delete indent
+        set smarttab            "insert tabs on the start of a line according to contect
+        set expandtab           "replace <TAB> with spaces
+        set shiftwidth=4        "use indents of 4 spaces
+        set tabstop=4           "an indentation every four columns
+        set softtabstop=4       "let backspace delete indent
     " }
     au FileType Makefile set noexpandtab    "Makefile have to use <TAB> excepts spaces
 " }
@@ -155,9 +164,9 @@
 
 " Auto reload vimrc when editing it {
     "if has("win32") || has("win64")
-    "    autocmd! bufwritepost _vimrc source $VIM\_vimrc 
+    "    autocmd! bufwritepost _vimrc source $VIM\_vimrc
     "else
-    "    autocmd! bufwritepost .vimrc source ~/.vimrc    
+    "    autocmd! bufwritepost .vimrc source ~/.vimrc
     "endif
 " }
 
@@ -178,11 +187,11 @@
 " }
 
 " Status line {
-    if has('statusline') 
+    if has('statusline')
         set laststatus=2
-        set statusline=\ %{HasPaste()}%<%-15.25(%f%)%m%r%h\ %w\ \ 
-        set statusline+=\ \ \ [%{&ff}/%Y] 
-        set statusline+=\ \ \ %<%20.30(%{hostname()}:%{CurDir()}%)\ 
+        set statusline=\ %{HasPaste()}%<%-15.25(%f%)%m%r%h\ %w\ \
+        set statusline+=\ \ \ [%{&ff}/%Y]
+        set statusline+=\ \ \ %<%20.30(%{hostname()}:%{CurDir()}%)\
         set statusline+=%=%-10.(%l,%c%V%)\ %p%%/%L
 
         function! CurDir()
@@ -210,18 +219,18 @@
 " }
 "
 " Save view {
-    "autocmd  BufWinLeave *.*	silent mkview
-    "autocmd  BufWinEnter *.*	silent loadview
-" }
-
-" C/C++ specific settings {
-    au FileType c,cpp,cc  set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^-1s,:0,=s,g0,h1s,p2,t0,+2,(2,)20,*30
+    "autocmd  BufWinLeave *.* silent mkview
+    "autocmd  BufWinEnter *.* silent loadview
 " }
 
 
 "---------------------------------------------------
 " Language Specific Indent
 "---------------------------------------------------
+" C/C++ specific settings {
+    au FileType c,cpp,cc set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^-1s,:0,=s,g0,h1s,p2,t0,+2,(2,)20,*30
+" }
+
 " HTML/CSS/Javascript/Ruby/Java indent settings {
     au FileType html,javascript,css,ejs,ruby,java setlocal ts=2 sts=2 sw=2
 " }
@@ -229,6 +238,7 @@
 " Handlebars {
     au BufNewFile,BufRead *.handlebars set filetype=html
 " }
+
 
 "---------------------------------------------------
 " VIM Key Mappings
@@ -247,7 +257,7 @@
 " }
 
 " ,p toggles paste mode {
-    nmap <leader><leader>p :set paste!<BAR>set paste?<CR>
+    nmap <leader>p :set paste!<BAR>set paste?<CR>
 " }
 
 " For when you forget to sudo in ubuntu/mint... {
@@ -270,7 +280,7 @@
     nmap    <c-h>   <c-w>h<c-w><bar>
     nmap    <c-l>   <c-w>l<c-w><bar>
     " Set the min width of a window to 0 so we can maximize others {
-        set wmw=0   
+        set wmw=0
     " }
     " Set the min height of a window to 0 so we can maximize others {
         set wmh=0
@@ -289,10 +299,10 @@
 
 " ,r replace the current word in all opened buffers {
     map <leader>r :call Replace()<CR>
-    fun! Replace() 
-        let s:word = input("Replace " . expand('<cword>') . " with:") 
-        :exe 'bufdo! %s/\<' . expand('<cword>') . '\>/' . s:word . '/ge' 
-        :unlet! s:word 
+    fun! Replace()
+        let s:word = input("Replace " . expand('<cword>') . " with:")
+        :exe 'bufdo! %s/\<' . expand('<cword>') . '\>/' . s:word . '/ge'
+        :unlet! s:word
     endfun
 " }
 
@@ -318,7 +328,7 @@
         copen 10
         let g:qfix_win = bufnr("$")
       en
-    endf   
+    endf
     nn      <leader>q :QFix<cr>
 " }
 
@@ -374,7 +384,7 @@
         nmap <c-y> <Plug>yankstack_substitute_older_paste
         nmap <c-Y> <Plug>yankstack_substitute_newer_paste
     " }
-    
+
     " vim-easy-align {
         vmap <Enter> <Plug>(EasyAlign)
         nmap <Leader>a <Plug>(EasyAlign)
@@ -388,7 +398,7 @@
     " vim-gitgutter {
         let g:gitgutter_max_signs = 50000
     " }
-    
+
     " delimitMate {
         imap <leader>k <ESC>O
         imap <leader>j <ESC>o
@@ -407,26 +417,26 @@
         let g:syntastic_python_checkers = ['pyflakes']
         nm <leader>sy :SyntasticCheck<CR>
     " }
-    
+
     " nerdtree {
         nmap  <leader>e :NERDTreeToggle<CR>
     " }
-    
+
     " sneak {
         let g:sneak#streak = 1
     " }
-    
+
     " tagbar {
         nm  <leader>t :TagbarToggle<CR>
         let g:tagbar_autofocus = 1
     " }
-    
+
     " ack {
         let g:ackprg = "ag"
         let g:ack_mappings = { "H":"" }
         nm  <leader>ag  :silent execute "Ack! --column -r ".expand("<cword>")." ./ "<Bar>QFixf<CR>
     " }
-    
+
     " ctrlp {
         let g:ctrlp_map = "<leader>f"
         let g:ctrlp_working_path_mode = 0
@@ -457,7 +467,7 @@
     " AutoComplPop {
         let g:acp_enableAtStartup = 1
         let g:acp_completeOption = '.,w,b,u,t,i,k'
-        " let g:acp_behaviorSnipmateLength = 1 
+        " let g:acp_behaviorSnipmateLength = 1
         let g:acp_behaviorUserDefinedMeets = 'acp#meetsForKeyword'
         let g:acp_behaviorUserDefinedFunction = 'syntaxcomplete#Complete'
         let g:omni_syntax_use_iskeyword = 0
@@ -473,7 +483,7 @@
             " let g:ycm_confirm_extra_conf = 0
         " }
     " }
-    
+
     " Alternative of YCM {
         " supertab {
             " let g:SuperTabDefaultCompletionType = 'context'
