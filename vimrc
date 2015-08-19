@@ -25,6 +25,8 @@
         Plugin 'Twinside/vim-cuteErrorMarker'
         Plugin 'c9s/colorselector.vim'
         Plugin 'bling/vim-airline'
+        Plugin 'chriskempson/vim-tomorrow-theme'
+        Plugin 'junegunn/seoul256.vim'
     " }
     " Basic {
         Plugin 'michaeljsmith/vim-indent-object'
@@ -34,12 +36,14 @@
         Plugin 'junegunn/vim-easy-align'
         Plugin 'Lokaltog/vim-easymotion'
         Plugin 'airblade/vim-gitgutter'
+        Plugin 'junegunn/limelight.vim'
         Plugin 'Raimondi/delimitMate'
         Plugin 'scrooloose/syntastic'
         Plugin 'tomtom/tcomment_vim'
         Plugin 'scrooloose/nerdtree'
         Plugin 'tpope/vim-surround'
         Plugin 'tpope/vim-fugitive'
+        Plugin 'junegunn/goyo.vim'
         Plugin 'majutsushi/tagbar'
         Plugin 'mileszs/ack.vim'
         Plugin 'kien/ctrlp.vim'
@@ -171,9 +175,10 @@
 
 " UI settings {
     if !has("gui_running")
-        set         t_Co=256    "color
-        colors      desertExN   "scheme
-        set         cursorline  "highlight current line
+        set     t_Co=256                    "color
+        colors  seoul256                    "scheme
+        let     g:seoul256_background = 236 "233(darkest) ~ 239(lightest)
+        set     cursorline                  "highlight current line
     " else ---> see gvimrc
     endif
 " }
@@ -445,6 +450,40 @@
             let g:ctrlp_user_command = "find %s -type f"
         endif
         nm  <leader>b :CtrlPBuffer<CR>
+    " }
+
+    " limelight + goyo {
+        let g:limelight_priority = -1
+
+        function! s:goyo_enter()
+            colors tomorrow-night
+            if has('gui_running')
+                set    fullscreen
+                set    background=dark
+                set    linespace=7
+            elseif exists('$TMUX')
+                silent !tmux set status off
+            endif
+            " hi NonText ctermfg=101
+            Limelight
+        endfunction
+
+        function! s:goyo_leave()
+            colors seoul256
+            if has('gui_running')
+                set    nofullscreen
+                set    background=dark
+                set    linespace=0
+            elseif exists('$TMUX')
+                silent !tmux set status on
+            endif
+            Limelight!
+        endfunction
+
+        autocmd! User GoyoEnter nested call <SID>goyo_enter()
+        autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+        nnoremap <Leader>G :Goyo<CR>
     " }
 " }
 

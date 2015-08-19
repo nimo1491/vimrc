@@ -1,6 +1,6 @@
 " gvim and macvim {
     if has("gui_running")
-        colors  desertExN                   "scheme
+        colors  seoul256                    "scheme
         set     cursorline                  "highlight current line
         set gfn=Sauce\ Code\ Powerline:h16  "font
         if has("gui_macvim")
