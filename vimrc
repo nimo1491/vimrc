@@ -27,6 +27,7 @@
         Plugin 'bling/vim-airline'
     " }
     " Basic {
+        Plugin 'michaeljsmith/vim-indent-object'
         Plugin 'editorconfig/editorconfig-vim'
         Plugin 'terryma/vim-multiple-cursors'
         Plugin 'maxbrunsfeld/vim-yankstack'
@@ -39,24 +40,22 @@
         Plugin 'scrooloose/nerdtree'
         Plugin 'tpope/vim-surround'
         Plugin 'tpope/vim-fugitive'
-        " Plugin 'justinmk/vim-sneak'       " conflict with vim-yankstack
         Plugin 'majutsushi/tagbar'
         Plugin 'mileszs/ack.vim'
         Plugin 'kien/ctrlp.vim'
         Plugin 'argtextobj.vim'
-        Plugin 'indent-motion'
         Plugin 'VisIncr'
     " }
     " Syntax, Indent {
         Plugin 'SyntaxComplete'
         Plugin 'othree/javascript-libraries-syntax.vim' " Javascript
         Plugin 'jiangmiao/simple-javascript-indenter'   " Javascript
-        " Plugin 'jelera/vim-javascript-syntax'           " Javascript
         Plugin 'othree/yajs.vim'                        " Javascript
         Plugin 'plasticboy/vim-markdown'                " Markdown
         Plugin 'hail2u/vim-css3-syntax'                 " CSS3
         Plugin 'ap/vim-css-color'                       " CSS color
         Plugin 'othree/html5.vim'                       " HTML5
+        Plugin 'mxw/vim-jsx'                            " JSX
         Plugin 'nginx.vim'                              " Nginx
         Plugin 'JSON.vim'                               " JSON
     " }
@@ -75,7 +74,7 @@
     " Completion {
         Plugin 'L9'
         Plugin 'othree/vim-autocomplpop'
-        Plugin 'marijnh/tern_for_vim'           " Javascript
+        " Plugin 'marijnh/tern_for_vim'           " Javascript
         " Plugin 'ahayman/vim-nodejs-complete'    " Node
         " Alternative of AutoComplPop {
             " Plugin 'Valloric/YouCompleteMe'         " C related languages and Python
@@ -422,10 +421,6 @@
         nmap  <leader>e :NERDTreeToggle<CR>
     " }
 
-    " sneak {
-        let g:sneak#streak = 1
-    " }
-
     " tagbar {
         nm  <leader>t :TagbarToggle<CR>
         let g:tagbar_autofocus = 1
@@ -457,9 +452,14 @@
     " vim-markdown {
         let g:vim_markdown_folding_disabled = 1
     " }
+
     " nginx {
         au BufRead,BufNewFile /usr/local/etc/nginx/* set ft=nginx
         au BufRead,BufNewFile /etc/nginx/* set ft=nginx
+    " }
+
+    " jsx {
+        let g:jsx_ext_required = 0
     " }
 " }
 
