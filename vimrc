@@ -3,93 +3,88 @@
 
 
 "---------------------------------------------------
-" Vundle
+" vim-plug
 "---------------------------------------------------
 " Set the runtime path to include Vundle and initialize {
-    set nocompatible
-    filetype off
-    if has("win32") || has("win64")
-        set rtp+=$VIM\vimfiles\bundle\Vundle
-    else
-        set rtp+=~/.vim/bundle/Vundle/
-    endif
-    call vundle#rc()
+    " set nocompatible
+    " filetype off
+    " if has("win32") || has("win64")
+    "     set rtp+=$VIM\vimfiles\bundle\Vundle
+    " else
+    "     set rtp+=~/.vim/bundle/Vundle/
+    " endif
+    " call vundle#rc()
 " }
 
-" Let Vundle manage Vundle, required {
-    Plugin 'gmarik/Vundle'
-" }
-
-" Vundle plugins {
+silent! if plug#begin('~/.vim/plugged')
     " UI {
-        Plugin 'Twinside/vim-cuteErrorMarker'
-        Plugin 'c9s/colorselector.vim'
-        Plugin 'bling/vim-airline'
-        Plugin 'chriskempson/vim-tomorrow-theme'
-        Plugin 'junegunn/seoul256.vim'
+        Plug 'Twinside/vim-cuteErrorMarker'
+        Plug 'c9s/colorselector.vim'
+        Plug 'bling/vim-airline'
+        Plug 'chriskempson/vim-tomorrow-theme'
+        Plug 'junegunn/seoul256.vim'
     " }
     " Basic {
-        Plugin 'michaeljsmith/vim-indent-object'
-        Plugin 'editorconfig/editorconfig-vim'
-        Plugin 'terryma/vim-multiple-cursors'
-        Plugin 'maxbrunsfeld/vim-yankstack'
-        Plugin 'junegunn/vim-easy-align'
-        Plugin 'Lokaltog/vim-easymotion'
-        Plugin 'airblade/vim-gitgutter'
-        Plugin 'junegunn/limelight.vim'
-        Plugin 'Raimondi/delimitMate'
-        Plugin 'scrooloose/syntastic'
-        Plugin 'tomtom/tcomment_vim'
-        Plugin 'scrooloose/nerdtree'
-        Plugin 'tpope/vim-surround'
-        Plugin 'tpope/vim-fugitive'
-        Plugin 'junegunn/goyo.vim'
-        Plugin 'majutsushi/tagbar'
-        Plugin 'mileszs/ack.vim'
-        Plugin 'kien/ctrlp.vim'
-        Plugin 'argtextobj.vim'
-        Plugin 'VisIncr'
+        Plug 'michaeljsmith/vim-indent-object'
+        Plug 'editorconfig/editorconfig-vim'
+        Plug 'terryma/vim-multiple-cursors'
+        Plug 'maxbrunsfeld/vim-yankstack'
+        Plug 'junegunn/vim-easy-align'
+        Plug 'Lokaltog/vim-easymotion'
+        Plug 'airblade/vim-gitgutter'
+        Plug 'junegunn/limelight.vim'
+        Plug 'Raimondi/delimitMate'
+        Plug 'scrooloose/syntastic'
+        Plug 'tomtom/tcomment_vim'
+        Plug 'scrooloose/nerdtree'
+        Plug 'tpope/vim-surround'
+        Plug 'tpope/vim-fugitive'
+        Plug 'junegunn/goyo.vim'
+        Plug 'majutsushi/tagbar'
+        Plug 'mileszs/ack.vim'
+        Plug 'kien/ctrlp.vim'
+        Plug 'argtextobj.vim'
+        Plug 'VisIncr'
     " }
     " Syntax, Indent {
-        Plugin 'SyntaxComplete'
-        Plugin 'othree/javascript-libraries-syntax.vim' " Javascript
-        Plugin 'jiangmiao/simple-javascript-indenter'   " Javascript
-        Plugin 'othree/yajs.vim'                        " Javascript
-        Plugin 'plasticboy/vim-markdown'                " Markdown
-        Plugin 'hail2u/vim-css3-syntax'                 " CSS3
-        Plugin 'ap/vim-css-color'                       " CSS color
-        Plugin 'othree/html5.vim'                       " HTML5
-        Plugin 'mxw/vim-jsx'                            " JSX
-        Plugin 'nginx.vim'                              " Nginx
-        Plugin 'JSON.vim'                               " JSON
+        Plug 'SyntaxComplete'
+        Plug 'othree/javascript-libraries-syntax.vim' " Javascript
+        Plug 'jiangmiao/simple-javascript-indenter'   " Javascript
+        Plug 'othree/yajs.vim'                        " Javascript
+        Plug 'plasticboy/vim-markdown'                " Markdown
+        Plug 'hail2u/vim-css3-syntax'                 " CSS3
+        Plug 'ap/vim-css-color'                       " CSS color
+        Plug 'othree/html5.vim'                       " HTML5
+        Plug 'mxw/vim-jsx'                            " JSX
+        Plug 'nginx.vim'                              " Nginx
+        Plug 'JSON.vim'                               " JSON
     " }
     " Snippet {
-        Plugin 'MarcWeber/vim-addon-mw-utils.git'
-        Plugin 'tomtom/tlib_vim.git'
-        Plugin 'garbas/vim-snipmate'
-        Plugin 'honza/vim-snippets'
+        Plug 'MarcWeber/vim-addon-mw-utils'
+        Plug 'tomtom/tlib_vim'
+        Plug 'garbas/vim-snipmate'
+        Plug 'honza/vim-snippets'
     " }
     " HTML, XML {
-        Plugin 'vim-scripts/matchit.zip'
-        Plugin 'gregsexton/MatchTag'
-        Plugin 'tpope/vim-ragtag'
-        Plugin 'mattn/emmet-vim'
+        Plug 'vim-scripts/matchit.zip'
+        Plug 'gregsexton/MatchTag'
+        Plug 'tpope/vim-ragtag'
+        Plug 'mattn/emmet-vim'
     " }
     " Completion {
-        Plugin 'L9'
-        Plugin 'othree/vim-autocomplpop'
-        " Plugin 'marijnh/tern_for_vim'           " Javascript
-        " Plugin 'ahayman/vim-nodejs-complete'    " Node
-        " Alternative of AutoComplPop {
-            " Plugin 'Valloric/YouCompleteMe'         " C related languages and Python
-        " }
-        " Alternative of YCM {
-            " Plugin 'ervandew/supertab'              " Perform completions with tab
-            " Plugin 'Rip-Rip/clang_complete'         " C related languages completions
-            " Plugin 'davidhalter/jedi-vim'           " Python completions
-        " }
+        "function! BuildYCM(info)
+            "if a:info.status == 'install' || a:info.force
+                "!./install.sh
+            "endif
+        "endfunction
+        Plug 'Valloric/YouCompleteMe'         " C related languages and Python
+        " Plug 'L9'
+        " Plug 'othree/vim-autocomplpop'
+        " Plug 'marijnh/tern_for_vim'         " Javascript
+        " Plug 'ahationyman/vim-nodejs-complete'  " Node
     " }
-" }
+call plug#end()
+endif
 
 
 "---------------------------------------------------
@@ -176,7 +171,7 @@
 " UI settings {
     if !has("gui_running")
         set     t_Co=256                    "color
-        colors  seoul256                    "scheme
+        silent! colors  seoul256            "scheme
         let     g:seoul256_background = 236 "233(darkest) ~ 239(lightest)
         set     cursorline                  "highlight current line
     " else ---> see gvimrc
@@ -383,7 +378,7 @@
     " }
 
     " vim-yankstack {
-        call yankstack#setup()
+        silent! call yankstack#setup()
         let g:yankstack_map_keys = 0
         nmap <c-y> <Plug>yankstack_substitute_older_paste
         nmap <c-Y> <Plug>yankstack_substitute_newer_paste
@@ -503,23 +498,22 @@
 " }
 
 " Completion {
-    " AutoComplPop {
-        let g:acp_enableAtStartup = 1
-        let g:acp_completeOption = '.,w,b,u,t,i,k'
-        " let g:acp_behaviorSnipmateLength = 1
-        let g:acp_behaviorUserDefinedMeets = 'acp#meetsForKeyword'
-        let g:acp_behaviorUserDefinedFunction = 'syntaxcomplete#Complete'
-        let g:omni_syntax_use_iskeyword = 0
+    " YouCompleteMe {
+        let g:ycm_always_populate_location_list = 0
+        let g:ycm_show_diagnostics_ui = 0
+        let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+        let g:ycm_collect_identifiers_from_tags_files = 1
+        let g:ycm_seed_indetifiers_with_syntax = 1
+        let g:ycm_confirm_extra_conf = 0
     " }
 
-    " Alternative of AutoComplPop {
-        " YouCompleteMe {
-            " let g:ycm_always_populate_location_list = 0
-            " let g:ycm_show_diagnostics_ui = 0
-            " let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-            " let g:ycm_collect_identifiers_from_tags_files = 1
-            " let g:ycm_seed_indetifiers_with_syntax = 1
-            " let g:ycm_confirm_extra_conf = 0
+    " Alternative of YCM {
+        " AutoComplPop {
+            let g:acp_enableAtStartup = 1
+            let g:acp_completeOption = '.,w,b,u,t,i,k'
+            let g:acp_behaviorUserDefinedMeets = 'acp#meetsForKeyword'
+            let g:acp_behaviorUserDefinedFunction = 'syntaxcomplete#Complete'
+            let g:omni_syntax_use_iskeyword = 0
         " }
     " }
 

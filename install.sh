@@ -6,15 +6,15 @@
 SYSTEM=`uname -s`
 
 if [ $SYSTEM == "Linux" ] || [ $SYSTEM == "Darwin" ]; then
-	VIMRC=".vimrc"
-	GVIMRC=".gvimrc"
-	VIMPF=".vim"
-	VIM="vim"
+    VIMRC=".vimrc"
+    GVIMRC=".gvimrc"
+    VIMPF=".vim"
+    VIM="vim"
 else
     VIMRC="_vimrc"
-	GVIMRC="_gvimrc"
-	VIMPF="vimfiles"
-	VIM="gvim"
+    GVIMRC="_gvimrc"
+    VIMPF="vimfiles"
+    VIM="gvim"
 fi
 cd ..
 
@@ -25,24 +25,11 @@ ln -sf $VIMPF/gvimrc $GVIMRC
 # install vundle plugins
 echo "install plugins..."
 cd $VIMPF
-$VIM +PluginInstall +qall
+$VIM +PlugInstall +qall
 
 # update submodule
 git submodule update
 
-# npm install tern
-echo "install tern_for_vim..."
-cd bundle/tern_for_vim/
-npm install > /dev/null 2>&1
+# finish
 cd ..
 echo "done"
-# echo "check npm first"
-# if "npm" > /dev/null 2>&1; then
-#     echo "npm exists..."
-#     echo "install tern_for_vim..."
-#     cd bundle/tern_for_vim/
-#     npm install
-# else
-#     echo "npm doesn't exist..."
-#     echo "skip install tern_for_vim..."
-# fi
