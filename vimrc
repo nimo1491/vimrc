@@ -19,9 +19,11 @@
 silent! if plug#begin('~/.vim/plugged')
     " UI {
         Plug 'Twinside/vim-cuteErrorMarker'
-        Plug 'c9s/colorselector.vim'
+        " Plug 'c9s/colorselector.vim'
         Plug 'bling/vim-airline'
         Plug 'chriskempson/vim-tomorrow-theme'
+        Plug 'NLKNguyen/papercolor-theme'
+        Plug 'chriskempson/base16-vim'
         Plug 'junegunn/seoul256.vim'
     " }
     " Basic {
@@ -37,6 +39,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'scrooloose/syntastic'
         Plug 'tomtom/tcomment_vim'
         Plug 'scrooloose/nerdtree'
+        Plug 'junegunn/vim-emoji'
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-fugitive'
         Plug 'junegunn/goyo.vim'
@@ -164,8 +167,8 @@ endif
 " UI settings {
     if !has("gui_running")
         set     t_Co=256                    "color
-        silent! colors  seoul256            "scheme
-        let     g:seoul256_background = 235 "233(darkest) ~ 239(lightest)
+        silent! colors  PaperColor          "scheme
+        " let     g:seoul256_background = 235 "233(darkest) ~ 239(lightest)
         set     cursorline                  "highlight current line
     " else ---> see gvimrc
     endif
@@ -362,6 +365,50 @@ endif
         let g:airline_theme = "tomorrow"
         let g:airline_powerline_fonts = 1
         let g:airline#extensions#whitespace#enabled = 0
+
+        silent! if emoji#available()
+            let s:ft_emoji = map({
+                \ 'c':              'baby_chick',
+                \ 'clojure':        'lollipop',
+                \ 'coffee':         'coffee',
+                \ 'cpp':            'chicken',
+                \ 'css':            'art',
+                \ 'eruby':          'ring',
+                \ 'gitcommit':      'soon',
+                \ 'haml':           'hammer',
+                \ 'help':           'angel',
+                \ 'html':           'herb',
+                \ 'java':           'older_man',
+                \ 'javascript':     'monkey',
+                \ 'javascript.jsx': 'monkey',
+                \ 'make':           'seedling',
+                \ 'mkd.markdown':   'book',
+                \ 'perl':           'camel',
+                \ 'python':         'snake',
+                \ 'ruby':           'gem',
+                \ 'scala':          'barber',
+                \ 'sh':             'shell',
+                \ 'slim':           'dancer',
+                \ 'text':           'books',
+                \ 'vim':            'pig',
+                \ 'yaml':           'yum',
+                \ 'yaml.jinja':     'yum'
+            \ }, 'emoji#for(v:val)')
+
+            function! S_filetype()
+            if empty(&filetype)
+              return emoji#for('grey_question')
+            else
+              return get(s:ft_emoji, &filetype, '['.&filetype.']')
+            endif
+            endfunction
+
+            function! AirlineOverwrite()
+                let g:airline_section_c = airline#section#create(['%{S_filetype()}', ' %f'])
+            endfunction
+            autocmd VimEnter * call AirlineOverwrite()
+        endif
+
     " }
 " }
 
@@ -389,6 +436,12 @@ endif
 
     " vim-gitgutter {
         let g:gitgutter_max_signs = 50000
+        silent! if emoji#available()
+            let g:gitgutter_sign_added             = emoji#for('small_blue_diamond')
+            let g:gitgutter_sign_modified          = emoji#for('small_orange_diamond')
+            let g:gitgutter_sign_removed           = emoji#for('small_red_triangle')
+            let g:gitgutter_sign_modified_removed  = emoji#for('collision')
+        endif
     " }
 
     " delimitMate {
@@ -444,7 +497,6 @@ endif
         let g:limelight_priority = -1
 
         function! s:goyo_enter()
-            colors tomorrow-night
             if has('gui_running')
                 set    fullscreen
                 set    background=dark
@@ -457,7 +509,6 @@ endif
         endfunction
 
         function! s:goyo_leave()
-            colors seoul256
             if has('gui_running')
                 set    nofullscreen
                 set    background=dark
