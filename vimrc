@@ -60,10 +60,8 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'JSON.vim'                               " JSON
     " }
     " Snippet {
-        Plug 'MarcWeber/vim-addon-mw-utils'
-        Plug 'tomtom/tlib_vim'
-        Plug 'garbas/vim-snipmate'
-        Plug 'honza/vim-snippets'
+        Plug 'SirVer/ultisnips'         " Engine
+        Plug 'honza/vim-snippets'       " Template
     " }
     " HTML, XML {
         Plug 'vim-scripts/matchit.zip'
@@ -72,12 +70,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'mattn/emmet-vim'
     " }
     " Completion {
-        "function! BuildYCM(info)
-            "if a:info.status == 'install' || a:info.force
-                "!./install.sh
-            "endif
-        "endfunction
-        Plug 'Valloric/YouCompleteMe'         " C related languages and Python
+        Plug 'Valloric/YouCompleteMe' " code-completion engine
         " Plug 'L9'
         " Plug 'othree/vim-autocomplpop'
         " Plug 'marijnh/tern_for_vim'         " Javascript
@@ -172,7 +165,7 @@ endif
     if !has("gui_running")
         set     t_Co=256                    "color
         silent! colors  seoul256            "scheme
-        let     g:seoul256_background = 236 "233(darkest) ~ 239(lightest)
+        let     g:seoul256_background = 235 "233(darkest) ~ 239(lightest)
         set     cursorline                  "highlight current line
     " else ---> see gvimrc
     endif
@@ -497,6 +490,14 @@ endif
     " }
 " }
 
+" Syntax {
+    " UltiSnips {
+        let g:UltiSnipsExpandTrigger = "<c-j>"
+        let g:UltiSnipsJumpForwardTrigger = "<c-n>"
+        let g:UltiSnipsJumpBackwardTrigger = "<c-p>"
+    " }
+" }
+
 " Completion {
     " YouCompleteMe {
         let g:ycm_always_populate_location_list = 0
@@ -509,11 +510,11 @@ endif
 
     " Alternative of YCM {
         " AutoComplPop {
-            let g:acp_enableAtStartup = 1
-            let g:acp_completeOption = '.,w,b,u,t,i,k'
-            let g:acp_behaviorUserDefinedMeets = 'acp#meetsForKeyword'
-            let g:acp_behaviorUserDefinedFunction = 'syntaxcomplete#Complete'
-            let g:omni_syntax_use_iskeyword = 0
+            " let g:acp_enableAtStartup = 1
+            " let g:acp_completeOption = '.,w,b,u,t,i,k'
+            " let g:acp_behaviorUserDefinedMeets = 'acp#meetsForKeyword'
+            " let g:acp_behaviorUserDefinedFunction = 'syntaxcomplete#Complete'
+            " let g:omni_syntax_use_iskeyword = 0
         " }
     " }
 

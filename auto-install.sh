@@ -13,6 +13,8 @@ die() {
 [ -e "$VIMHOME/vimrc" ] && die "$VIMHOME/vimrc already exists."
 [ -e "~/.vim" ] && die "~/.vim already exists."
 [ -e "~/.vimrc" ] && die "~/.vimrc already exists."
+[ -e "~/.nvim" ] && die "~/.nvim already exists."
+[ -e "~/.nvimrc" ] && die "~/.nvimrc already exists."
 
 git clone https://github.com/nimo1491/vimrc.git "$VIMHOME"
 cd "$VIMHOME"

@@ -8,6 +8,7 @@ SYSTEM=`uname -s`
 if [ $SYSTEM == "Linux" ] || [ $SYSTEM == "Darwin" ]; then
     VIMRC=".vimrc"
     GVIMRC=".gvimrc"
+    NVIMRC=".nvimrc"
     VIMPF=".vim"
     VIM="vim"
 else
@@ -21,6 +22,7 @@ cd ..
 # vimrc
 ln -sf $VIMPF/vimrc $VIMRC
 ln -sf $VIMPF/gvimrc $GVIMRC
+ln -sf $VIMPF/vimrc $NVIMRC
 
 # install vundle plugins
 echo "install plugins..."
@@ -30,6 +32,10 @@ $VIM +PlugInstall +qall
 # update submodule
 git submodule update
 
+# install YCM
+cd plugged/YouCompleteMe
+./install.sh --clang-completer
+
 # finish
-cd ..
+cd ../../../
 echo "done"
