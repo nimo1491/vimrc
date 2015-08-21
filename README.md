@@ -5,333 +5,54 @@ https://github.com/nimo1491/vimrc
 ## PREREQUISITE
 
 * [Ctags](http://ctags.sourceforge.net/) (*tagbar*)
-* [Ack](http://betterthangrep.com/) (*ack.vim*)
+* [The Silver Searcher](http://geoff.greer.fm/ag) (*ack.vim*)
 
+Install development tool, CMake, and Python headers for YouCompleteMe in Ubuntu
+
+```bash
+    $ sudo apt-get install build-essential cmake python-dev
+```
 
 ## ONE-STEP INSTALL
 
-Use curl (for Mac OS X):
+Use curl:
 
 ```bash
     $ curl -L https://raw.github.com/nimo1491/vimrc/master/auto-install.sh | sh
 ```
 
-or wget (for most UNIX platforms):
+or wget:
 
 ```bash
     $ wget -O - https://raw.github.com/nimo1491/vimrc/master/auto-install.sh | sh
 ```
 
 
-
 ## MANUALLY INSTALL
 
-* Check out from github
+* Check out from github and then install it
 
 ```bash
     $ git clone https://github.com/nimo1491/vimrc ~/.vim
     $ cd ~/.vim
-    $ cp -f vimrc_min vimrc
-    $ git submodule update --init
-```
-
-* Install vimrc
-
-```bash
+    $ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     $ ./install.sh
 ```
 
 
-## HOW TO INSTALL ON WINDOWS
+## UPGRADE PLUGIN
 
-* Execute git-bash. ("Run as administrator" if OS is Vista/Win7)
+Launch `vim` and run `:PlugInstall`
 
-* Check out from github
-
-```bash
-    cd /c/Program\ Files/Vim
-    rm -rf vimfiles
-    git clone https://github.com/nimo1491/vimrc vimfiles
-    cd vimfiles
-    cp -f vimrc_min vimrc
-    git submodule update --init
-```
-
-* Install vimrc. 
-
-```bash
-    ./install.sh
-```
-
-
-## UPGRADE PLUGIN 
-
-Launch `vim` and run `:PluginInstall`
-
-To install from command line: `vim +PluginInstall +qall`
-
-
-## VIMRC CUSTOMIZATION
-
-## KEY BINDING
-
-* `<leader>` - ','   
-* `:cd.` - Change working directory to that of current file   
-* `<leader>/` - Turn off searching highlighting   
-* `<leader><leader>p` - Toggles paste mode   
-* `:w!!` - Force writing if you forgot to sudo   
-* `<s-h>` - Switch to previous tab   
-* `<s-l>` - Switch to next tab   
-* `<` - Shift left in visual mode   
-* `>` - Shift right in visual mode   
-* `<c-j><c-k><c-l><c-h>` - Move down/up/right/left and maximum the split   
-* Command line mappings:
-    * `<c-a>` - Command line "home"   
-    * `<c-e>` - Command line "end"   
-    * `<c-b>` - Command line "left"   
-    * `<c-d>` - Command line "del"   
-    * `<c-f>` - Command line "right"   
-    * `<c-n>` - Command line "down"   
-    * `<c-p>` - Command line "up"   
-* `<leader>r` - Replace the current word in all opened buffers   
-* `<leader>g` - Generates the header guard   
-* `<leader>q` - Toggles quickfix   
-* `<leader>ig` - Vimgrep the current word   
-* `<leader>eg` - Grep the current word   
-
-
-## [Vundle](https://github.com/gmarik/Vundle.vim)
-
-Vundle, the plug-in manager for Vim.
-
-**NOTICE:** Vundle is managed by git submodule.
-Try these commands to update Vundle:
-
-```bash
-cd .vim/bundle/vundle
-git pull origin master
-```
-
-## [colorselector.vim](https://github.com/c9s/colorselector.vim)
-
-Provide emacs-like colorscheme selector buffer.
-
-* `:SelectColorS` to change themes.
-* `<c-q>` to exit colorselect window.
-
-## [vim-airline](https://github.com/bling/vim-airline)
-
-Lean & mean status/tabline for vim that's light as air.
-
-##### Customizations:
-* Set theme to `tomorrow`.
-
-## [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
-
-True Sublime Text style multiple selections for Vim.
-
-* Press `<c-n>` in Normal mode to highlights the current word under the cursor in Visual mode.
-* `<c-p>` in Visual mode will remoev the current virtual cursor and go back to the previous virtual cursor location.
-* `<c-x>` in Visual mode will remove the current virtual cursor and skip to the next virtual cursor location.
-
-## [vim-yankstack](https://github.com/maxbrunsfeld/vim-yankstack)
-
-A lightweight implementation of emacs's kill-ring for vim.
-
-##### Customizations:
-* `<c-y>` to cycle backward through your history of yanks.
-* `<c-Y>` to cycle forward through your history of yanks.
-
-## [vim-easy-align](https://github.com/junegunn/vim-easy-align)
-
-A vim alignment plugin.
-
-* `<Enter>` to align in virtual mode.
-* `<leader>a` to align in normal mode.
-
-Try these commands:
-
-* `vip<Enter>=`
-    * `v`isual-select `i`nner `p`aragraph.
-    * Start EasyAlign command (`<Enter>)`).
-    * Align around `=`.
-
-* `<leader>aip=`
-    * Start EasyAlign command (`<leader>a)`) for `i`nner `p`aragraph.
-    * Align around `=`.
-
-## [vim-easymotion](https://github.com/Lokaltog/vim-easymotion)
-
-Vim motions on speed!
-
-* `<leader><leader>w` to begin of word forward.
-* `<leader><leader>b` to begin of word backward.
-* `<leader><leader>f{char}` to find `{char}` to the right.
-* `<leader><leader>F{char}` to find `{char}` to the left.
-
-## [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
-
-A vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
-
-## [delimitMate](https://github.com/Raimondi/delimitMate)
-
-Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
-
-##### Customizations:
-* `<leader>k` to move up. 
-* `<leader>j` to move down. 
-* `<leader>l` to move right.
-* `<leader>h` to move left.
-
-## [syntastic](https://github.com/scrooloose/syntastic)
-
-Syntax checking hacks for vim.
-
-##### Customizations:
-* `<leader>sy` to toggle syntastic.
-
-## [tcomment_vim](https://github.com/tomtom/tcomment_vim)
-
-An extensible & universal comment vim-plugin that also handles embedded filetypes.
-
-## [nerdtree](https://github.com/scrooloose/nerdtree)
-
-A tree explorer plugin for vim.
-
-##### Customizations:
-* `<leader>e` to toggle nerdtree.
-
-## [vim-surround](https://github.com/tpope/vim-surround)
-
-Quoting/parenthesizing made simple.
-
-Press `cs"'` inside
-```
-"Hello world!"
-```
-to change it to 
-```
-'Hello world!'
-```
-Now press `cs'<q>` to change it to
-```
-<q>Hello world!</q>
-```
-To go full circle, press `cst"` to get
-```
-"Hello world!"
-```
-To remove the delimiters entirely, press `ds"`.
-```
-Hello world!
-```
-Now with the cursor on "Hello", press `ysiw]` (`iw` is a text object).
-```
-[Hello] world!
-```
-Let's make that braces and add some space (use `}` instead of `{` for no space): `cs]{`
-```
-{ Hello } world!
-```
-Now wrap the entire line in parentheses with `yssb` or `yss)`.
-```
-({ Hello } world!)
-```
-Revert to the original text: `ds{ds)`
-```
-Hello world!
-```
-Emphasize hello: `ysiw<em>`
-```
-<em>Hello</em> world!
-```
-
-## [vim-fugitive](https://github.com/tpope/vim-fugitive)
-
-A Git wrapper so awesome, it should be illegal.
-
-## [vim-sneak](https://github.com/justinmk/vim-sneak)
-
-The missing motion for Vim.
-
-## [tagbar](https://github.com/majutsushi/tagbar)
-
-Vim plugin that displays tags in a window, ordered by scope.
-
-##### Customizations:
-* `<leader>t` to toggle tagbar.
-* Enable auto focus.
-
-## [ack.vim](https://github.com/mileszs/ack.vim)
-
-Vim plugin for the Perl module/CLI script 'ack'.
-
-* `o` to open.
-* `O` to open and close quickfix window.
-* `t` to open in new tab.
-* `h` to open in horizontal split.
-* `v` to open in vertical split.
-* `q` to close the quickfix window.
-
-##### Customizations:
-* `<leader>ac` to ack the current word.
-* Replace `ack` to `ag`
-
-## [ctrlp](https://github.com/kien/ctrlp.vim)
-
-Fuzzy file, buffer, mru, tag, etc finder.
-
-* Press `<c-f>` and `<c-b>` to cycle between modes.
-* Use `<c-j>`, `<c-k>` or the arrow keys to navigate the result list.
-* Use `<c-t>` or `<c-v>`, `<c-x>` to open the selected entry in a new tab or in a new split.
-* Use `<c-n>`, `<c-p>` to select the next/previous string in the prompt's history.
-* Use `<c-c>` to exit ctrlp.
-
-##### Customizations:
-* `<leader>p` to toggle ctrlp.
-
-## [argtextobj.vim](https://github.com/vim-scripts/argtextobj.vim)
-
-Text-object like motion for arguments.
-
-* `daa` delete an argument.
-* `cia` change inner argument.
-* `via` select inner argument.
-
-## [indent-motion](https://github.com/vim-scripts/indent_motion)
-
-Vim motions to the start and end of the current indentation-delimited block.
-
-* `<leader>[` to move to the beginning of your current indentation-delimited block.
-* `<leader>]` to move to the end of your current indentation-delimited block.
-
-## [matchit](https://github.com/vim-scripts/matchit.zip)
-
-Extended % matching for HTML, LaTeX, and many other languages.
-
-## [MatchTag](https://github.com/gregsexton/MatchTag)
-
-Vim's MatchParen for HTML tags.
-
-## [vim-ragtag](https://github.com/tpope/vim-ragtag)
-
-Ghetto HTML/XML mappings.
-
-* `<c-x><space>` to add closing tag on the same line.
-* `<c-x><enter>` to add closing tag separated by a newline.
-
-## [emmet-vim](https://github.com/mattn/emmet-vim)
-
-Emmet for Vim.
-
-* Press `<c-y>,` to trigger emmet.
-
-See [Emmet](http://docs.emmet.io) official site to learn more abount emmet.
+To install from command line: `vim +PlugInstall +qall`
 
 
 REFERENCES
 ----------
 
+* https://github.com/moskytw/mosky.vim
+* https://github.com/junegunn/dotfiles
+* https://github.com/ycavatars/vimrc
 * https://github.com/othree/rc.git
 * https://github.com/vgod/vimrc.git
 * https://github.com/carlhuda/janus.git
