@@ -16,7 +16,7 @@ die() {
 [ -e "~/.nvim" ] && die "~/.nvim already exists."
 [ -e "~/.nvimrc" ] && die "~/.nvimrc already exists."
 
-git clone https://github.com/nimo1491/vimrc-temp.git "$VIMHOME"
+git clone https://github.com/nimo1491/vimrc.git "$VIMHOME"
 cd "$VIMHOME"
 # if vundle
 # git submodule update --init
