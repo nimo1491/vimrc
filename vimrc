@@ -133,9 +133,9 @@ endif
     " enable mouse
     set mouse=r
     " always use the clipboard for ALL vim operations
-    set clipboard+=unnamedplus
+    set clipboard=unnamed
     " seperate list of screen columns
-    set colorcolumn=80
+    " set colorcolumn=80
 
     " Set scroll options {
         " lines to scroll when cursor leaves screen
@@ -622,7 +622,7 @@ endif
     " YouCompleteMe {
         let g:ycm_always_populate_location_list = 0
         let g:ycm_show_diagnostics_ui = 0
-        let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+        let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
         let g:ycm_collect_identifiers_from_tags_files = 1
         let g:ycm_seed_indetifiers_with_syntax = 1
         let g:ycm_confirm_extra_conf = 0
