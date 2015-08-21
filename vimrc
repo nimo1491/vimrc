@@ -45,9 +45,13 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'junegunn/goyo.vim'
         Plug 'majutsushi/tagbar'
         Plug 'mileszs/ack.vim'
-        Plug 'kien/ctrlp.vim'
+        " Plug 'kien/ctrlp.vim'
         Plug 'argtextobj.vim'
         Plug 'VisIncr'
+        " A command-line fuzzy finder written in Go
+        Plug 'junegunn/fzf'
+        " A set of fzf-based Vim commands.
+        Plug 'junegunn/fzf.vim'
     " }
     " Syntax, Indent {
         Plug 'SyntaxComplete'
@@ -60,7 +64,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'othree/html5.vim'                       " HTML5
         Plug 'mxw/vim-jsx'                            " JSX
         Plug 'nginx.vim'                              " Nginx
-        Plug 'JSON.vim'                               " JSON
+        Plug 'elzr/vim-json'                          " JSON
     " }
     " Snippet {
         Plug 'SirVer/ultisnips'         " Engine
@@ -479,18 +483,34 @@ endif
     " }
 
     " ctrlp {
-        let g:ctrlp_map = "<leader>f"
-        let g:ctrlp_working_path_mode = 0
-        let g:ctrlp_custom_ignore = {
-            \ 'dir':    '\node_modules$\|.git$\|\.hg$\|\.svn$',
-            \ 'file':   '\.exe$\|\.so$\|\.dll$\|\.bz2$\|\.gz$\.DS_Store$\|\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.svg$',
-            \ }
-        if has("win32") || has("win64")
-            let g:ctrlp_user_command = "dir %s /-n /b /s /a-d"
-        else
-            let g:ctrlp_user_command = "find %s -type f"
+        " let g:ctrlp_map = "<leader>f"
+        " let g:ctrlp_working_path_mode = 0
+        " let g:ctrlp_custom_ignore = {
+        "     \ 'dir':    '\node_modules$\|.git$\|\.hg$\|\.svn$',
+        "     \ 'file':   '\.exe$\|\.so$\|\.dll$\|\.bz2$\|\.gz$\.DS_Store$\|\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.svg$',
+        "     \ }
+        " if has("win32") || has("win64")
+        "     let g:ctrlp_user_command = "dir %s /-n /b /s /a-d"
+        " else
+        "     let g:ctrlp_user_command = "find %s -type f"
+        " endif
+        " nm  <leader>b :CtrlPBuffer<CR>
+    " }
+
+    " FZF {
+        if has('nvim')
+          let $FZF_DEFAULT_OPTS .= ' --inline-info'
         endif
-        nm  <leader>b :CtrlPBuffer<CR>
+
+        " nnoremap <silent> <Leader>f :FZF -m -x<CR>
+        nnoremap <silent> <Leader>f :Files<CR>
+        nnoremap <silent> <Leader>b :Buffers<CR>
+
+        " This is the default extra key bindings
+        let g:fzf_action = {
+          \ 'ctrl-t': 'tab split',
+          \ 'ctrl-s': 'split',
+          \ 'ctrl-v': 'vsplit' }
     " }
 
     " limelight + goyo {
