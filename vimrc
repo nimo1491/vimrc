@@ -26,6 +26,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'chriskempson/base16-vim'
         Plug 'junegunn/seoul256.vim'
     " }
+
     " Basic {
         Plug 'michaeljsmith/vim-indent-object'
         Plug 'editorconfig/editorconfig-vim'
@@ -53,35 +54,39 @@ silent! if plug#begin('~/.vim/plugged')
         " A set of fzf-based Vim commands.
         Plug 'junegunn/fzf.vim'
     " }
+
     " Syntax, Indent {
         Plug 'SyntaxComplete'
-        Plug 'othree/javascript-libraries-syntax.vim' " Javascript
-        Plug 'jiangmiao/simple-javascript-indenter'   " Javascript
-        Plug 'othree/yajs.vim'                        " Javascript
-        Plug 'plasticboy/vim-markdown'                " Markdown
-        Plug 'hail2u/vim-css3-syntax'                 " CSS3
-        Plug 'ap/vim-css-color'                       " CSS color
-        Plug 'othree/html5.vim'                       " HTML5
-        Plug 'mxw/vim-jsx'                            " JSX
-        Plug 'nginx.vim'                              " Nginx
-        Plug 'elzr/vim-json'                          " JSON
+        Plug 'othree/javascript-libraries-syntax.vim'
+        Plug 'jiangmiao/simple-javascript-indenter'
+        Plug 'othree/yajs.vim'
+        Plug 'plasticboy/vim-markdown'
+        Plug 'hail2u/vim-css3-syntax'
+        Plug 'ap/vim-css-color'
+        Plug 'othree/html5.vim'
+        Plug 'mxw/vim-jsx'
+        Plug 'nginx.vim'
+        Plug 'elzr/vim-json'
     " }
+
     " Snippet {
-        Plug 'SirVer/ultisnips'         " Engine
-        Plug 'honza/vim-snippets'       " Template
+        Plug 'SirVer/ultisnips'
+        Plug 'honza/vim-snippets'
     " }
+
     " HTML, XML {
         Plug 'vim-scripts/matchit.zip'
         Plug 'gregsexton/MatchTag'
         Plug 'tpope/vim-ragtag'
         Plug 'mattn/emmet-vim'
     " }
+
     " Completion {
-        Plug 'Valloric/YouCompleteMe' " code-completion engine
+        Plug 'Valloric/YouCompleteMe'
         " Plug 'L9'
         " Plug 'othree/vim-autocomplpop'
-        " Plug 'marijnh/tern_for_vim'         " Javascript
-        " Plug 'ahationyman/vim-nodejs-complete'  " Node
+        " Plug 'marijnh/tern_for_vim'
+        " Plug 'ahationyman/vim-nodejs-complete'
     " }
 call plug#end()
 endif
@@ -91,66 +96,108 @@ endif
 " VIM Basic and UI
 "---------------------------------------------------
 " General Settings {
-    set nocompatible        "not compatible with the old-fashion vi mode
-    set bg=dark             "set dark background
-    set bs=2                "equals bs=indent,eol,start
-    set history=500         "keep 500 lines of command line history
-    set undolevels=100      "Remember 100 changes
-    set autoread            "auto read when file is changed from outside
-    set nobackup            "disable backup
-    set noswapfile          "disable swap file
-    set ruler               "show the ruler
-    set modeline            "enable modeline
-    set showmatch           "show matching brackets/parenthesis
-    set showmode            "display the current mode
-    set number              "line number on
-    set mat=15              "how many tenths of a second to blink
-    set ff=unix             "force newline = 0x0a
-    " set viminfo=            "disable .viminfo file
-    set ttyfast             "send more chars while redrawing
-    set lazyredraw          "don't redraw while exectuing macros
-    set mouse=a             "enable mouse
-    " set colorcolumn=80      "seperate list of screen columns
-    " set scroll options {
-        set scrolljump=1    "lines to scroll when cursor leaves screen
-        set scrolloff=6     "minimum lines to keey above and below cursor
+    " not compatible with the old-fashion vi mode
+    set nocompatible
+    " set dark background
+    set bg=dark
+    " equals bs=indent,eol,start
+    set bs=2
+    " keep 500 lines of command line history
+    set history=500
+    " remember 100 changes
+    set undolevels=100
+    " auto read when file is changed from outside
+    set autoread
+    " disable backup
+    set nobackup
+    " disable swap file
+    set noswapfile
+    " show the ruler
+    set ruler
+    " enable modeline
+    set modeline
+    " show matching brackets/parenthesis
+    set showmatch
+    " display the current mode
+    set showmode
+    " line number on
+    set number
+    " how many tenths of a second to blink
+    set mat=15
+    " force newline = 0x0a
+    set ff=unix
+    " send more chars while redrawing
+    set ttyfast
+    " don't redraw while exectuing macros
+    set lazyredraw
+    " enable mouse
+    set mouse=r
+    " always use the clipboard for ALL vim operations
+    set clipboard+=unnamedplus
+    " seperate list of screen columns
+    set colorcolumn=80
+
+    " Set scroll options {
+        " lines to scroll when cursor leaves screen
+        set scrolljump=1
+        " minimum lines to keey above and below cursor
+        set scrolloff=6
     " }
-    " set search options {
-        set hlsearch        "highlight search terms
-        set incsearch       "find as you tye search
-        set smartcase       "ignore case if search pattern is all lowercase
-        set ignorecase      "case insensitive search
+
+    " Set search options {
+        " highlight search terms
+        set hlsearch
+        " find as you tye search
+        set incsearch
+        " ignore case if search pattern is all lowercase
+        set smartcase
+        " case insensitive search
+        set ignorecase
     " }
+
     " Show tabs and end of line {
         set list
         set listchars=tab:▹\ ,trail:▵
-        " set listchars=tab:\|\
     " }
 " }
 
 " Set wild options {
-    set  wildmenu
-    set  wildmode=longest,list
-    set  wildignore+=*.o,*.class,*.pyc,*.a,*.so,*.obj,*.exe,*.lib,*.ncb,*.opt,*.plg,.svn,.git
-    set  winaltkeys=no
+    set wildmenu
+    set wildmode=longest,list
+    set wildignore+=*.o,*.class,*.pyc,*.a,*.so,*.obj,*.exe,*.lib,*.ncb,*.opt,*.plg,.svn,.git
+    set winaltkeys=no
 " }
 
 " Formatting {
-    set wrap                    "wrap long lines
-    set whichwrap=b,s,<,>,[,]   "move smoothly between lines
+    " wrap long lines
+    set wrap
+    " move smoothly between lines
+    set whichwrap=b,s,<,>,[,]
+
     " Set indent options {
-        set autoindent          "indent at the same level of the previous line
-        set smartindent         "advanced auto indent, remember to enable autoindent
-        set copyindent          "copy the previous indentation on autoindenting
+        " indent at the same level of the previous line
+        set autoindent
+        " advanced auto indent, remember to enable autoindent
+        set smartindent
+        " copy the previous indentation on autoindenting
+        set copyindent
     " }
+
     " Set tab options {
-        set smarttab            "insert tabs on the start of a line according to contect
-        set expandtab           "replace <TAB> with spaces
-        set shiftwidth=4        "use indents of 4 spaces
-        set tabstop=4           "an indentation every four columns
-        set softtabstop=4       "let backspace delete indent
+        " insert tabs on the start of a line according to contect
+        set smarttab
+        " replace <TAB> with spaces
+        set expandtab
+        " use indents of 4 spaces
+        set shiftwidth=4
+        " an indentation every four columns
+        set tabstop=4
+        " let backspace delete indent
+        set softtabstop=4
     " }
-    au FileType Makefile set noexpandtab    "Makefile have to use <TAB> excepts spaces
+
+    " Makefile have to use <TAB> excepts spaces
+    au FileType Makefile set noexpandtab
 " }
 
 " Disable sound on errors {
@@ -161,19 +208,21 @@ endif
 " }
 
 " Auto reload vimrc when editing it {
-    "if has("win32") || has("win64")
-    "    autocmd! bufwritepost _vimrc source $VIM\_vimrc
-    "else
-    "    autocmd! bufwritepost .vimrc source ~/.vimrc
-    "endif
+    if has("win32") || has("win64")
+       autocmd! bufwritepost _vimrc source $VIM\_vimrc
+    else
+       autocmd! bufwritepost .vimrc source ~/.vimrc
+    endif
 " }
 
 " UI settings {
     if !has("gui_running")
-        set     t_Co=256                    "color
-        silent! colors  PaperColor          "scheme
-        " let     g:seoul256_background = 235 "233(darkest) ~ 239(lightest)
-        set     cursorline                  "highlight current line
+        " color
+        set t_Co=256
+        " scheme
+        silent! colors PaperColor
+        " highlight current line
+        set cursorline
     " else ---> see gvimrc
     endif
 " }
@@ -216,7 +265,7 @@ endif
 " Restore cursor to file position in previous editing session {
     au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 " }
-"
+
 " Save view {
     "autocmd  BufWinLeave *.* silent mkview
     "autocmd  BufWinEnter *.* silent loadview
@@ -457,9 +506,9 @@ endif
 
     " Syntastic {
         let g:syntastic_mode_map = {
-                    \ "mode": "passive",
-                    \ "active_filetypes": [],
-                    \ "passive_filetypes": []}
+            \ "mode": "passive",
+            \ "active_filetypes": [],
+            \ "passive_filetypes": []}
         let g:syntastic_auto_loc_list = 1
         let g:syntastic_javascript_checkers = ['jslint']
         let g:syntastic_javascript_jslint_conf = "--nomen --plusplus --forin --regext"
@@ -499,7 +548,7 @@ endif
 
     " FZF {
         if has('nvim')
-          let $FZF_DEFAULT_OPTS .= ' --inline-info'
+            let $FZF_DEFAULT_OPTS .= ' --inline-info'
         endif
 
         " nnoremap <silent> <Leader>f :FZF -m -x<CR>
@@ -508,9 +557,9 @@ endif
 
         " This is the default extra key bindings
         let g:fzf_action = {
-          \ 'ctrl-t': 'tab split',
-          \ 'ctrl-s': 'split',
-          \ 'ctrl-v': 'vsplit' }
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-s': 'split',
+            \ 'ctrl-v': 'vsplit' }
     " }
 
     " limelight + goyo {
