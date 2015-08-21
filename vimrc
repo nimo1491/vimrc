@@ -510,9 +510,8 @@ endif
             \ "active_filetypes": [],
             \ "passive_filetypes": []}
         let g:syntastic_auto_loc_list = 1
-        let g:syntastic_javascript_checkers = ['jslint']
-        let g:syntastic_javascript_jslint_conf = "--nomen --plusplus --forin --regext"
-        let g:syntastic_python_checkers = ['pyflakes']
+        let g:syntastic_javascript_checkers = ['eslint']
+        let g:syntastic_python_checkers = ['python']
         nm <leader>sy :SyntasticCheck<CR>
     " }
 
