@@ -41,6 +41,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'tomtom/tcomment_vim'
         Plug 'scrooloose/nerdtree'
         Plug 'junegunn/vim-emoji'
+        Plug 'junegunn/vim-journal'
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-fugitive'
         Plug 'junegunn/goyo.vim'
