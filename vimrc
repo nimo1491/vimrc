@@ -20,6 +20,7 @@ silent! if plug#begin('~/.vim/plugged')
     " UI {
         Plug 'Twinside/vim-cuteErrorMarker'
         " Plug 'c9s/colorselector.vim'
+        Plug 'Yggdroot/indentLine'
         Plug 'bling/vim-airline'
         Plug 'chriskempson/vim-tomorrow-theme'
         Plug 'NLKNguyen/papercolor-theme'
@@ -32,6 +33,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'editorconfig/editorconfig-vim'
         Plug 'terryma/vim-multiple-cursors'
         Plug 'maxbrunsfeld/vim-yankstack'
+        Plug 'terryma/vim-expand-region'
         Plug 'junegunn/vim-easy-align'
         Plug 'Lokaltog/vim-easymotion'
         Plug 'airblade/vim-gitgutter'
@@ -47,13 +49,14 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'junegunn/goyo.vim'
         Plug 'majutsushi/tagbar'
         Plug 'mileszs/ack.vim'
-        " Plug 'kien/ctrlp.vim'
+        Plug 'mileszs/ack.vim'
+        Plug 'kien/ctrlp.vim'
         Plug 'argtextobj.vim'
         Plug 'VisIncr'
         " A command-line fuzzy finder written in Go
-        Plug 'junegunn/fzf'
+        " Plug 'junegunn/fzf'
         " A set of fzf-based Vim commands.
-        Plug 'junegunn/fzf.vim'
+        " Plug 'junegunn/fzf.vim'
     " }
 
     " Syntax, Indent {
@@ -66,6 +69,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'ap/vim-css-color'
         Plug 'othree/html5.vim'
         Plug 'mxw/vim-jsx'
+        Plug 'pangloss/vim-javascript'
         Plug 'nginx.vim'
         Plug 'elzr/vim-json'
     " }
@@ -134,7 +138,11 @@ endif
     " enable mouse
     set mouse=r
     " always use the clipboard for ALL vim operations
-    set clipboard=unnamed
+    if has('nvim')
+        set clipboard+=unnamedplus
+    else
+        set clipboard+=unnamed
+    endif
     " seperate list of screen columns
     " set colorcolumn=80
 
@@ -518,6 +526,7 @@ endif
 
     " nerdtree {
         nmap  <leader>e :NERDTreeToggle<CR>
+        nmap  <leader><leader>e :NERDTreeFind<CR>
     " }
 
     " tagbar {
@@ -532,34 +541,37 @@ endif
     " }
 
     " ctrlp {
-        " let g:ctrlp_map = "<leader>f"
-        " let g:ctrlp_working_path_mode = 0
-        " let g:ctrlp_custom_ignore = {
-        "     \ 'dir':    '\node_modules$\|.git$\|\.hg$\|\.svn$',
-        "     \ 'file':   '\.exe$\|\.so$\|\.dll$\|\.bz2$\|\.gz$\.DS_Store$\|\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.svg$',
-        "     \ }
-        " if has("win32") || has("win64")
-        "     let g:ctrlp_user_command = "dir %s /-n /b /s /a-d"
-        " else
-        "     let g:ctrlp_user_command = "find %s -type f"
-        " endif
-        " nm  <leader>b :CtrlPBuffer<CR>
+        let g:ctrlp_map = "<leader>f"
+        let g:ctrlp_working_path_mode = 0
+        let g:ctrlp_custom_ignore = {
+            \ 'dir':    '\node_modules$\|.git$\|\.hg$\|\.svn$',
+            \ 'file':   '\.exe$\|\.so$\|\.dll$\|\.bz2$\|\.gz$\.DS_Store$\|\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.svg$',
+            \ }
+        if has("win32") || has("win64")
+            let g:ctrlp_user_command = "dir %s /-n /b /s /a-d"
+        endif
+        nm  <leader>b :CtrlPBuffer<CR>
     " }
 
     " FZF {
-        if has('nvim')
-            let $FZF_DEFAULT_OPTS .= ' --inline-info'
-        endif
+        " if has('nvim')
+        "     let $FZF_DEFAULT_OPTS .= ' --inline-info'
+        " endif
+        "
+        " " nnoremap <silent> <Leader>f :FZF -m -x<CR>
+        " nnoremap <silent> <Leader>f :Files<CR>
+        " nnoremap <silent> <Leader>b :Buffers<CR>
+        "
+        " " This is the default extra key bindings
+        " let g:fzf_action = {
+        "     \ 'ctrl-t': 'tab split',
+        "     \ 'ctrl-s': 'split',
+        "     \ 'ctrl-v': 'vsplit' }
+    " }
 
-        " nnoremap <silent> <Leader>f :FZF -m -x<CR>
-        nnoremap <silent> <Leader>f :Files<CR>
-        nnoremap <silent> <Leader>b :Buffers<CR>
-
-        " This is the default extra key bindings
-        let g:fzf_action = {
-            \ 'ctrl-t': 'tab split',
-            \ 'ctrl-s': 'split',
-            \ 'ctrl-v': 'vsplit' }
+    " Expand region {
+        vmap v <Plug>(expand_region_expand)
+        vmap <C-v> <Plug>(expand_region_shrink)
     " }
 
     " limelight + goyo {
