@@ -62,14 +62,14 @@ silent! if plug#begin('~/.vim/plugged')
     " Syntax, Indent {
         Plug 'SyntaxComplete'
         Plug 'othree/javascript-libraries-syntax.vim'
-        Plug 'jiangmiao/simple-javascript-indenter'
+        " Plug 'jiangmiao/simple-javascript-indenter'
         Plug 'othree/yajs.vim'
         Plug 'plasticboy/vim-markdown'
         Plug 'hail2u/vim-css3-syntax'
         Plug 'ap/vim-css-color'
         Plug 'othree/html5.vim'
-        Plug 'mxw/vim-jsx'
         Plug 'pangloss/vim-javascript'
+        Plug 'mxw/vim-jsx'
         Plug 'nginx.vim'
         Plug 'elzr/vim-json'
     " }
