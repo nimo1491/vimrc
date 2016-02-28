@@ -8,9 +8,9 @@ SYSTEM=`uname -s`
 if [ $SYSTEM == "Linux" ] || [ $SYSTEM == "Darwin" ]; then
     VIMRC=".vimrc"
     GVIMRC=".gvimrc"
-    NVIMRC=".nvimrc"
+    NVIMRC=".config/nvim/init.vim"
     VIMPF=".vim"
-    NVIMPF=".nvim"
+    NVIMPF=".config/nvim"
     VIM="vim"
 else
     VIMRC="_vimrc"
@@ -21,11 +21,11 @@ fi
 cd ..
 
 # .nvim
-ln -sf $VIMPF $NVIMPF
+ln -sf ~/$VIMPF $NVIMPF
 
 # vimrc
 ln -sf $VIMPF/vimrc $VIMRC
-ln -sf $VIMPF/vimrc $NVIMRC
+ln -sf ~/$VIMPF/vimrc $NVIMRC
 ln -sf $VIMPF/gvimrc $GVIMRC
 
 # install vundle plugins
