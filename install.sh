@@ -38,7 +38,7 @@ git submodule update
 
 # install YCM
 cd plugged/YouCompleteMe
-./install.sh --clang-completer
+./install.py --clang-completer
 
 # finish
 cd ../../../
