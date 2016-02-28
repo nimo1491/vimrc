@@ -51,13 +51,13 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'majutsushi/tagbar'
         Plug 'mileszs/ack.vim'
         Plug 'mileszs/ack.vim'
-        Plug 'kien/ctrlp.vim'
+        " Plug 'kien/ctrlp.vim'
         Plug 'argtextobj.vim'
         Plug 'VisIncr'
         " A command-line fuzzy finder written in Go
-        " Plug 'junegunn/fzf'
+        Plug 'junegunn/fzf'
         " A set of fzf-based Vim commands.
-        " Plug 'junegunn/fzf.vim'
+        Plug 'junegunn/fzf.vim'
     " }
 
     " Syntax, Indent {
@@ -542,32 +542,49 @@ endif
     " }
 
     " ctrlp {
-        let g:ctrlp_map = "<leader>f"
-        let g:ctrlp_working_path_mode = 0
-        let g:ctrlp_custom_ignore = {
-            \ 'dir':    '\node_modules$\|.git$\|\.hg$\|\.svn$',
-            \ 'file':   '\.exe$\|\.so$\|\.dll$\|\.bz2$\|\.gz$\.DS_Store$\|\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.svg$',
-            \ }
-        if has("win32") || has("win64")
-            let g:ctrlp_user_command = "dir %s /-n /b /s /a-d"
-        endif
-        nm  <leader>b :CtrlPBuffer<CR>
+        " let g:ctrlp_map = "<leader>f"
+        " let g:ctrlp_working_path_mode = 0
+        " let g:ctrlp_custom_ignore = {
+        "     \ 'dir':    '\node_modules$\|.git$\|\.hg$\|\.svn$',
+        "     \ 'file':   '\.exe$\|\.so$\|\.dll$\|\.bz2$\|\.gz$\.DS_Store$\|\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.svg$',
+        "     \ }
+        " if has("win32") || has("win64")
+        "     let g:ctrlp_user_command = "dir %s /-n /b /s /a-d"
+        " endif
+        " nm  <leader>b :CtrlPBuffer<CR>
     " }
 
     " FZF {
-        " if has('nvim')
-        "     let $FZF_DEFAULT_OPTS .= ' --inline-info'
-        " endif
-        "
-        " " nnoremap <silent> <Leader>f :FZF -m -x<CR>
-        " nnoremap <silent> <Leader>f :Files<CR>
-        " nnoremap <silent> <Leader>b :Buffers<CR>
-        "
-        " " This is the default extra key bindings
-        " let g:fzf_action = {
-        "     \ 'ctrl-t': 'tab split',
-        "     \ 'ctrl-s': 'split',
-        "     \ 'ctrl-v': 'vsplit' }
+        if has('nvim')
+            let $FZF_DEFAULT_OPTS .= ' --inline-info'
+        endif
+
+        nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+        nnoremap <silent> <Leader>C        :Colors<CR>
+        nnoremap <silent> <Leader>b        :Buffers<CR>
+        nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
+        nnoremap <silent> <Leader>`        :Marks<CR>
+
+        imap <c-x><c-k> <plug>(fzf-complete-word)
+        imap <c-x><c-f> <plug>(fzf-complete-path)
+        imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+        imap <c-x><c-l> <plug>(fzf-complete-line)
+
+        nmap <leader><tab> <plug>(fzf-maps-n)
+        xmap <leader><tab> <plug>(fzf-maps-x)
+        omap <leader><tab> <plug>(fzf-maps-o)
+
+        command! Plugs call fzf#run({
+          \ 'source':  map(sort(keys(g:plugs)), 'g:plug_home."/".v:val'),
+          \ 'options': '--delimiter / --nth -1',
+          \ 'down':    '~40%',
+          \ 'sink':    'Explore'})
+
+        " This is the default extra key bindings
+        let g:fzf_action = {
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-s': 'split',
+            \ 'ctrl-v': 'vsplit' }
     " }
 
     " Expand region {
