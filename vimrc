@@ -47,6 +47,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'junegunn/vim-journal'
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-fugitive'
+        Plug 'gregsexton/gitv'
         Plug 'junegunn/goyo.vim'
         Plug 'majutsushi/tagbar'
         Plug 'mileszs/ack.vim'
@@ -585,6 +586,12 @@ endif
             \ 'ctrl-t': 'tab split',
             \ 'ctrl-s': 'split',
             \ 'ctrl-v': 'vsplit' }
+    " }
+
+    " Gitv {
+        nmap <leader>gv :Gitv --all<cr>
+        nmap <leader>gV :Gitv! --all<cr>
+        vmap <leader>gV :Gitv! --all<cr>
     " }
 
     " Expand region {
