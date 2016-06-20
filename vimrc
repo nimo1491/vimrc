@@ -102,6 +102,11 @@ endif
 "---------------------------------------------------
 " VIM Basic and UI
 "---------------------------------------------------
+" Encoding settings {
+    set fencs=utf-8,big5,euc-jp,utf-bom,iso8859-1
+    set fenc=utf-8 enc=utf-8 tenc=utf-8
+" }
+
 " General Settings {
     " not compatible with the old-fashion vi mode
     set nocompatible
@@ -266,11 +271,6 @@ endif
             endif
         endfunction
     endif
-" }
-
-" Encoding settings {
-    set fencs=utf-8,big5,euc-jp,utf-bom,iso8859-1
-    set fenc=utf-8 enc=utf-8 tenc=utf-8
 " }
 
 " Restore cursor to file position in previous editing session {
