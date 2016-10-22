@@ -26,7 +26,6 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'chriskempson/vim-tomorrow-theme'
         Plug 'NLKNguyen/papercolor-theme'
         Plug 'chriskempson/base16-vim'
-        Plug 'junegunn/seoul256.vim'
     " }
 
     " Basic {
@@ -35,45 +34,40 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'terryma/vim-multiple-cursors'
         Plug 'maxbrunsfeld/vim-yankstack'
         Plug 'terryma/vim-expand-region'
-        Plug 'junegunn/vim-easy-align'
         Plug 'Lokaltog/vim-easymotion'
         Plug 'airblade/vim-gitgutter'
-        Plug 'junegunn/limelight.vim'
         Plug 'Raimondi/delimitMate'
         Plug 'scrooloose/syntastic'
         Plug 'tomtom/tcomment_vim'
         Plug 'scrooloose/nerdtree'
-        Plug 'junegunn/vim-emoji'
-        Plug 'junegunn/vim-journal'
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-fugitive'
-        Plug 'gregsexton/gitv'
-        Plug 'junegunn/goyo.vim'
         Plug 'majutsushi/tagbar'
-        Plug 'mileszs/ack.vim'
         Plug 'mileszs/ack.vim'
         " Plug 'kien/ctrlp.vim'
         Plug 'argtextobj.vim'
         Plug 'VisIncr'
-        " A command-line fuzzy finder written in Go
-        Plug 'junegunn/fzf'
-        " A set of fzf-based Vim commands.
-        Plug 'junegunn/fzf.vim'
     " }
 
     " Syntax, Indent {
         Plug 'SyntaxComplete'
-        Plug 'othree/javascript-libraries-syntax.vim'
-        " Plug 'jiangmiao/simple-javascript-indenter'
-        Plug 'othree/yajs.vim'
-        Plug 'plasticboy/vim-markdown'
-        Plug 'hail2u/vim-css3-syntax'
-        Plug 'ap/vim-css-color'
-        Plug 'othree/html5.vim'
-        Plug 'pangloss/vim-javascript'
-        Plug 'mxw/vim-jsx'
         Plug 'nginx.vim'
         Plug 'elzr/vim-json'
+        Plug 'othree/html5.vim'
+        Plug 'plasticboy/vim-markdown'
+        " ***** JS, JSX, TS ***** "
+        Plug 'othree/javascript-libraries-syntax.vim'
+        Plug 'jiangmiao/simple-javascript-indenter'
+        Plug 'othree/yajs.vim'
+        Plug 'othree/es.next.syntax.vim'
+        Plug 'othree/jspc.vim'
+        Plug 'bigfish/vim-js-context-coloring'
+        Plug 'pangloss/vim-javascript'
+        Plug 'leafgarland/typescript-vim'
+        Plug 'mxw/vim-jsx'
+        " ***** CSS ***** "
+        Plug 'hail2u/vim-css3-syntax'
+        Plug 'ap/vim-css-color'
     " }
 
     " Snippet {
@@ -94,6 +88,20 @@ silent! if plug#begin('~/.vim/plugged')
         " Plug 'othree/vim-autocomplpop'
         " Plug 'marijnh/tern_for_vim'
         " Plug 'ahationyman/vim-nodejs-complete'
+    " }
+
+    " junegunn {
+        Plug 'junegunn/vim-easy-align'
+        Plug 'junegunn/limelight.vim'
+        Plug 'junegunn/seoul256.vim'
+        Plug 'junegunn/vim-journal'
+        Plug 'junegunn/vim-emoji'
+        Plug 'junegunn/goyo.vim'
+        Plug 'junegunn/gv.vim'
+        " A command-line fuzzy finder written in Go
+        Plug 'junegunn/fzf'
+        " A set of fzf-based Vim commands.
+        Plug 'junegunn/fzf.vim'
     " }
 call plug#end()
 endif
@@ -588,10 +596,15 @@ endif
             \ 'ctrl-v': 'vsplit' }
     " }
 
-    " Gitv {
-        nmap <leader>gv :Gitv --all<cr>
-        nmap <leader>gV :Gitv! --all<cr>
-        vmap <leader>gV :Gitv! --all<cr>
+    " gv.vim {
+        function! s:gv_expand()
+            let line = getline('.')
+            GV --name-status
+            call search('\V'.ine, 'c')
+            normal! zz
+        endfunction
+
+        autocmd! FileType GV nnoremap <buffer> <silent> + :call <sid>gv_expand()<cr>
     " }
 
     " Expand region {
