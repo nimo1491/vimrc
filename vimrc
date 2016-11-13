@@ -61,7 +61,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'othree/yajs.vim'
         Plug 'othree/es.next.syntax.vim'
         Plug 'othree/jspc.vim'
-        Plug 'bigfish/vim-js-context-coloring'
+        " Plug 'bigfish/vim-js-context-coloring'
         Plug 'pangloss/vim-javascript'
         Plug 'leafgarland/typescript-vim'
         Plug 'mxw/vim-jsx'
