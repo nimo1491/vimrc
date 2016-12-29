@@ -565,7 +565,9 @@ endif
 
     " FZF {
         if has('nvim')
-            let $FZF_DEFAULT_OPTS .= ' --inline-info'
+            let $FZF_DEFAULT_OPTS .= ' --inline-info --bind ctrl-f:page-down,ctrl-b:page-up'
+        else
+            let $FZF_DEFAULT_OPTS .= ' --bind ctrl-f:page-down,ctrl-b:page-up'
         endif
 
         nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
