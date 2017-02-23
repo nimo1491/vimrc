@@ -40,6 +40,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'scrooloose/syntastic'
         Plug 'tomtom/tcomment_vim'
         Plug 'scrooloose/nerdtree'
+        Plug 'jistr/vim-nerdtree-tabs'
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-fugitive'
         Plug 'majutsushi/tagbar'
@@ -55,7 +56,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'elzr/vim-json'
         Plug 'othree/html5.vim'
         Plug 'plasticboy/vim-markdown'
-        " ***** JS, JSX, TS ***** "
+        " ***** JS, TS ***** "
         Plug 'othree/javascript-libraries-syntax.vim'
         Plug 'jiangmiao/simple-javascript-indenter'
         Plug 'othree/yajs.vim'
@@ -64,7 +65,6 @@ silent! if plug#begin('~/.vim/plugged')
         " Plug 'bigfish/vim-js-context-coloring'
         Plug 'pangloss/vim-javascript'
         Plug 'leafgarland/typescript-vim'
-        Plug 'mxw/vim-jsx'
         " ***** CSS ***** "
         Plug 'hail2u/vim-css3-syntax'
         Plug 'ap/vim-css-color'
@@ -342,16 +342,22 @@ endif
 " }
 
 " Move around and maximum the split {
-    map     <c-j>   <c-w>j<c-w>_
-    map     <c-k>   <c-w>k<c-w>_
-    nmap    <c-h>   <c-w>h<c-w><bar>
-    nmap    <c-l>   <c-w>l<c-w><bar>
+    " map     <c-j>   <c-w>j<c-w>_
+    " map     <c-k>   <c-w>k<c-w>_
+    " nmap    <c-h>   <c-w>h<c-w><bar>
+    " nmap    <c-l>   <c-w>l<c-w><bar>
     " Set the min width of a window to 0 so we can maximize others {
-        set wmw=0
+        " set wmw=0
     " }
     " Set the min height of a window to 0 so we can maximize others {
-        set wmh=0
+        " set wmh=0
     " }
+
+    " Not to maximum the split
+    map     <c-j>   <c-w>j
+    map     <c-k>   <c-w>k
+    nmap    <c-h>   <c-w>h
+    nmap    <c-l>   <c-w>l
 " }
 
 " Command line mapping {
@@ -535,8 +541,8 @@ endif
     " }
 
     " nerdtree {
-        nmap  <leader>e :NERDTreeToggle<CR>
-        nmap  <leader><leader>e :NERDTreeFind<CR>
+        nmap  <leader>e :NERDTreeTabsToggle<CR>
+        nmap  <leader><leader>e :NERDTreeTabsFind<CR>
     " }
 
     " tagbar {
@@ -655,10 +661,6 @@ endif
     " nginx {
         au BufRead,BufNewFile /usr/local/etc/nginx/* set ft=nginx
         au BufRead,BufNewFile /etc/nginx/* set ft=nginx
-    " }
-
-    " jsx {
-        let g:jsx_ext_required = 0
     " }
 " }
 
