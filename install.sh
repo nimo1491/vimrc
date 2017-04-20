@@ -1,23 +1,13 @@
 #!/bin/sh
 
-# .vimrc for linux, _vimrc for windows
-# .gvimrc for linux, _gvimrc for windows
-# .vim for linux, vimfiles for windows
-SYSTEM=`uname -s`
+# No more support Windows
+VIMRC=".vimrc"
+GVIMRC=".gvimrc"
+NVIMRC=".config/nvim/init.vim"
+VIMPF=".vim"
+NVIMPF=".config/nvim"
+VIM="vim"
 
-if [ $SYSTEM == "Linux" ] || [ $SYSTEM == "Darwin" ]; then
-    VIMRC=".vimrc"
-    GVIMRC=".gvimrc"
-    NVIMRC=".config/nvim/init.vim"
-    VIMPF=".vim"
-    NVIMPF=".config/nvim"
-    VIM="vim"
-else
-    VIMRC="_vimrc"
-    GVIMRC="_gvimrc"
-    VIMPF="vimfiles"
-    VIM="gvim"
-fi
 cd ..
 
 # .nvim
