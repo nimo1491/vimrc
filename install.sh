@@ -2,21 +2,13 @@
 
 # No more support Windows
 VIMRC=".vimrc"
-GVIMRC=".gvimrc"
-NVIMRC=".config/nvim/init.vim"
 VIMPF=".vim"
-NVIMPF=".config/nvim"
 VIM="vim"
 
 cd ..
 
-# .nvim
-ln -sf ~/$VIMPF $NVIMPF
-
 # vimrc
 ln -sf $VIMPF/vimrc $VIMRC
-ln -sf ~/$VIMPF/vimrc $NVIMRC
-ln -sf $VIMPF/gvimrc $GVIMRC
 
 # install vundle plugins
 echo "install plugins..."
