@@ -173,7 +173,7 @@ endif
 
 " Set wild options {
     set wildmenu
-    set wildmode=longest,list
+    set wildmode=full
     set wildignore+=*.o,*.class,*.pyc,*.a,*.so,*.obj,*.exe,*.lib,*.ncb,*.opt,*.plg,.svn,.git
     set winaltkeys=no
 " }
@@ -215,14 +215,6 @@ endif
     set novisualbell
     set t_vb=
     set tm=500
-" }
-
-" Auto reload vimrc when editing it {
-    if has("win32") || has("win64")
-       autocmd! bufwritepost _vimrc source $VIM\_vimrc
-    else
-       autocmd! bufwritepost .vimrc source ~/.vimrc
-    endif
 " }
 
 " UI settings {
@@ -305,7 +297,7 @@ endif
 " }
 
 " ,p toggles paste mode {
-    nmap <leader>p :set paste!<BAR>set paste?<CR>
+    nmap <leader><leader>p :set paste!<BAR>set paste?<CR>
 " }
 
 " For when you forget to sudo in ubuntu/mint... {
@@ -386,7 +378,7 @@ endif
     nn      <leader>q :QFix<cr>
 " }
 
-" ,ig ,eg grep{
+" ,ig ,eggrep {
     nmap <leader>eg :silent execute "grep! -r ".expand("<cword>")." ./ "<Bar>QFixf<CR>
     nmap <leader>ig :execute "vimgrep! /".expand("<cword>")."/gj **"<Bar>QFixf<CR>
 " }
@@ -417,7 +409,7 @@ endif
                 \ 'javascript':     'monkey',
                 \ 'javascript.jsx': 'monkey',
                 \ 'make':           'seedling',
-                \ 'mkd.markdown':   'book',
+                \ 'markdown':       'book',
                 \ 'perl':           'camel',
                 \ 'python':         'snake',
                 \ 'ruby':           'gem',
@@ -443,7 +435,6 @@ endif
             endfunction
             autocmd VimEnter * call AirlineOverwrite()
         endif
-
     " }
 " }
 
@@ -514,7 +505,10 @@ endif
             let $FZF_DEFAULT_OPTS .= ' --bind ctrl-f:page-down,ctrl-b:page-up'
         endif
 
-        nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+        command! -bang -nargs=? -complete=dir Files
+          \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+        nnoremap <silent> <expr> <Leader>p (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
         nnoremap <silent> <Leader>C        :Colors<CR>
         nnoremap <silent> <Leader>b        :Buffers<CR>
         nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
@@ -528,18 +522,6 @@ endif
         nmap <leader><tab> <plug>(fzf-maps-n)
         xmap <leader><tab> <plug>(fzf-maps-x)
         omap <leader><tab> <plug>(fzf-maps-o)
-
-        command! Plugs call fzf#run({
-          \ 'source':  map(sort(keys(g:plugs)), 'g:plug_home."/".v:val'),
-          \ 'options': '--delimiter / --nth -1',
-          \ 'down':    '~40%',
-          \ 'sink':    'Explore'})
-
-        " This is the default extra key bindings
-        let g:fzf_action = {
-            \ 'ctrl-t': 'tab split',
-            \ 'ctrl-s': 'split',
-            \ 'ctrl-v': 'vsplit' }
     " }
 
     " gv.vim {
@@ -554,6 +536,7 @@ endif
     " }
 
     " limelight + goyo {
+        let g:limelight_paragraph_span = 1
         let g:limelight_priority = -1
 
         function! s:goyo_enter()
@@ -564,8 +547,9 @@ endif
             elseif exists('$TMUX')
                 silent !tmux set status off
             endif
-            " hi NonText ctermfg=101
             Limelight
+            let &l:statusline = '%M'
+            hi StatusLine ctermfg=red guifg=red cterm=NONE gui=NONE
         endfunction
 
         function! s:goyo_leave()
