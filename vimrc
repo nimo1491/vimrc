@@ -19,7 +19,6 @@
 silent! if plug#begin('~/.vim/plugged')
     " UI {
         Plug 'Twinside/vim-cuteErrorMarker'
-        " Plug 'c9s/colorselector.vim'
         Plug 'Yggdroot/indentLine'
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
@@ -35,7 +34,6 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'maxbrunsfeld/vim-yankstack'
         Plug 'terryma/vim-expand-region'
         Plug 'Lokaltog/vim-easymotion'
-        Plug 'airblade/vim-gitgutter'
         Plug 'Raimondi/delimitMate'
         Plug 'scrooloose/syntastic'
         Plug 'tomtom/tcomment_vim'
@@ -45,27 +43,19 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'tpope/vim-fugitive'
         Plug 'majutsushi/tagbar'
         Plug 'mileszs/ack.vim'
-        " Plug 'kien/ctrlp.vim'
         Plug 'vim-scripts/argtextobj.vim'
-        Plug 'vim-scripts/VisIncr'
+        if v:version >= 703
+          Plug 'mhinz/vim-signify'
+        endif
     " }
 
-    " Syntax, Indent {
-        Plug 'vim-scripts/SyntaxComplete'
+    " Syntax {
         Plug 'vim-scripts/nginx.vim'
         Plug 'elzr/vim-json'
         Plug 'othree/html5.vim'
         Plug 'plasticboy/vim-markdown'
-        " ***** JS, TS ***** "
-        " Plug 'othree/javascript-libraries-syntax.vim'
         Plug 'jiangmiao/simple-javascript-indenter'
-        " Plug 'othree/yajs.vim'
-        " Plug 'othree/es.next.syntax.vim'
-        " Plug 'othree/jspc.vim'
-        " Plug 'bigfish/vim-js-context-coloring'
         Plug 'pangloss/vim-javascript'
-        Plug 'leafgarland/typescript-vim'
-        " ***** CSS ***** "
         Plug 'hail2u/vim-css3-syntax'
         Plug 'ap/vim-css-color'
     " }
@@ -84,10 +74,6 @@ silent! if plug#begin('~/.vim/plugged')
 
     " Completion {
         Plug 'Valloric/YouCompleteMe'
-        " Plug 'L9'
-        " Plug 'othree/vim-autocomplpop'
-        " Plug 'marijnh/tern_for_vim'
-        " Plug 'ahationyman/vim-nodejs-complete'
     " }
 
     " junegunn {
@@ -285,11 +271,6 @@ endif
     au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 " }
 
-" Save view {
-    "autocmd  BufWinLeave *.* silent mkview
-    "autocmd  BufWinEnter *.* silent loadview
-" }
-
 
 "---------------------------------------------------
 " Language Specific Indent
@@ -410,30 +391,6 @@ endif
     nmap <leader>ig :execute "vimgrep! /".expand("<cword>")."/gj **"<Bar>QFixf<CR>
 " }
 
-" Onmi Completion {
-    " Enable Onmi Completion (C-x C-o) {
-        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-        autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-        autocmd FileType c set omnifunc=ccomplete#Complete
-    " }
-
-    " Use syntax complete if nothing else available {
-        if has("autocmd") && exists("+omnifunc")
-            autocmd Filetype *
-                \	if &omnifunc == "" |
-                \		setlocal omnifunc=syntaxcomplete#Complete |
-                \	endif
-        endif
-    " }
-
-    " Make CSS omnicompletion work for SASS and SCSS {
-        autocmd BufNewFile,BufRead *.scss set ft=scss.css
-        autocmd BufNewFile,BufRead *.sass set ft=sass.css
-    " }
-" }
-
 
 "---------------------------------------------------
 " VIM Plugins
@@ -512,16 +469,6 @@ endif
         nmap s <Plug>(easymotion-s2)
     " }
 
-    " vim-gitgutter {
-        let g:gitgutter_max_signs = 50000
-        " silent! if emoji#available()
-        "     let g:gitgutter_sign_added             = emoji#for('small_blue_diamond')
-        "     let g:gitgutter_sign_modified          = emoji#for('small_orange_diamond')
-        "     let g:gitgutter_sign_removed           = emoji#for('small_red_triangle')
-        "     let g:gitgutter_sign_modified_removed  = emoji#for('collision')
-        " endif
-    " }
-
     " delimitMate {
         imap <leader>k <ESC>O
         imap <leader>j <ESC>o
@@ -545,6 +492,10 @@ endif
         nmap  <leader><leader>e :NERDTreeTabsFind<CR>
     " }
 
+    " vim-signify {
+        let g:signify_vcs_list = ['git']
+    " }
+
     " tagbar {
         nm  <leader>t :TagbarToggle<CR>
         let g:tagbar_autofocus = 1
@@ -554,19 +505,6 @@ endif
         let g:ackprg = "ag"
         let g:ack_mappings = { "H":"" }
         nm  <leader>ag  :silent execute "Ack! --column -r ".expand("<cword>")." ./ "<Bar>QFixf<CR>
-    " }
-
-    " ctrlp {
-        " let g:ctrlp_map = "<leader>f"
-        " let g:ctrlp_working_path_mode = 0
-        " let g:ctrlp_custom_ignore = {
-        "     \ 'dir':    '\node_modules$\|.git$\|\.hg$\|\.svn$',
-        "     \ 'file':   '\.exe$\|\.so$\|\.dll$\|\.bz2$\|\.gz$\.DS_Store$\|\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.svg$',
-        "     \ }
-        " if has("win32") || has("win64")
-        "     let g:ctrlp_user_command = "dir %s /-n /b /s /a-d"
-        " endif
-        " nm  <leader>b :CtrlPBuffer<CR>
     " }
 
     " FZF {
@@ -613,11 +551,6 @@ endif
         endfunction
 
         autocmd! FileType GV nnoremap <buffer> <silent> + :call <sid>gv_expand()<cr>
-    " }
-
-    " Expand region {
-        " vmap v <Plug>(expand_region_expand)
-        " vmap <C-v> <Plug>(expand_region_shrink)
     " }
 
     " limelight + goyo {
@@ -680,22 +613,5 @@ endif
         let g:ycm_collect_identifiers_from_tags_files = 1
         let g:ycm_seed_indetifiers_with_syntax = 1
         let g:ycm_confirm_extra_conf = 0
-    " }
-
-    " Alternative of YCM {
-        " AutoComplPop {
-            " let g:acp_enableAtStartup = 1
-            " let g:acp_completeOption = '.,w,b,u,t,i,k'
-            " let g:acp_behaviorUserDefinedMeets = 'acp#meetsForKeyword'
-            " let g:acp_behaviorUserDefinedFunction = 'syntaxcomplete#Complete'
-            " let g:omni_syntax_use_iskeyword = 0
-        " }
-    " }
-
-    " Alternative of YCM {
-        " supertab {
-            " let g:SuperTabDefaultCompletionType = 'context'
-            " let SuperTabMappingForward = '<leader><tab>'
-        " }
     " }
 " }
