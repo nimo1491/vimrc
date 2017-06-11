@@ -46,13 +46,13 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'majutsushi/tagbar'
         Plug 'mileszs/ack.vim'
         " Plug 'kien/ctrlp.vim'
-        Plug 'argtextobj.vim'
-        Plug 'VisIncr'
+        Plug 'vim-scripts/argtextobj.vim'
+        Plug 'vim-scripts/VisIncr'
     " }
 
     " Syntax, Indent {
-        Plug 'SyntaxComplete'
-        Plug 'nginx.vim'
+        Plug 'vim-scripts/SyntaxComplete'
+        Plug 'vim-scripts/nginx.vim'
         Plug 'elzr/vim-json'
         Plug 'othree/html5.vim'
         Plug 'plasticboy/vim-markdown'
