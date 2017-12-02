@@ -268,7 +268,7 @@ endif
 " Language Specific Indent
 "---------------------------------------------------
 " C/C++ specific settings {
-    au FileType c,cpp,cc set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^-1s,:0,=s,g0,h1s,p2,t0,+2,(2,)20,*30
+    au FileType c,cpp,cc set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^0s,:s,=s,g1s,h1s,p2,t0,+2,(2,)20,*30
 " }
 
 " HTML/CSS/Javascript/Ruby/Java indent settings {
