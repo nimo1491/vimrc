@@ -173,7 +173,7 @@ endif
 
 " Set wild options {
     set wildmenu
-    set wildmode=full
+    set wildmode=full:longest,full
     set wildignore+=*.o,*.class,*.pyc,*.a,*.so,*.obj,*.exe,*.lib,*.ncb,*.opt,*.plg,.svn,.git
     set winaltkeys=no
 " }
