@@ -568,6 +568,12 @@ endif
 
         nnoremap <Leader>G :Goyo<CR>
     " }
+
+    " tcomment {
+        let g:tcommentMapLeader2 = '<leader>c'
+        au FileType c nmap <buffer>gcc :TCommentAs c_<CR>
+        au FileType c vmap <buffer>gc  :TCommentAs c_<CR>
+    " }
 " }
 
 " Syntax {
