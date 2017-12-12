@@ -305,8 +305,10 @@ endif
 " }
 
 " Move around tabs. conflict with the original screen top/bottom {
-    map <S-H> gT
-    map <S-L> gt
+    " map <S-H> gT
+    " map <S-L> gt
+    nnoremap ]t :tabn<cr>
+    nnoremap [t :tabp<cr>
 " }
 
 " Allow multiple indentation/deindentation in visual mode {
@@ -327,10 +329,14 @@ endif
     " }
 
     " Not to maximum the split
-    map     <c-j>   <c-w>j
-    map     <c-k>   <c-w>k
-    nmap    <c-h>   <c-w>h
-    nmap    <c-l>   <c-w>l
+    " map     <c-j>   <c-w>j
+    " map     <c-k>   <c-w>k
+    " nmap    <c-h>   <c-w>h
+    " nmap    <c-l>   <c-w>l
+
+    " <tab> / <s-tab> | Circular windows navigation
+    nnoremap <tab>   <c-w>w
+    nnoremap <S-tab> <c-w>W
 " }
 
 " Command line mapping {
