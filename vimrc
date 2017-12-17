@@ -72,6 +72,10 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'mattn/emmet-vim'
     " }
 
+    " HTML, XML {
+        Plug 'vim-scripts/python_match.vim'
+    " }
+
     " Completion {
         Plug 'Valloric/YouCompleteMe'
     " }
