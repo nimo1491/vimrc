@@ -491,6 +491,9 @@ endif
 
     " vim-signify {
         let g:signify_vcs_list = ['git']
+        let g:signify_vcs_cmds = {
+        \ 'git':    'git diff --no-color --no-ext-diff -b -U0 -- %f'
+        \ }
     " }
 
     " tagbar {
