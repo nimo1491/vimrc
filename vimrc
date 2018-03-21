@@ -590,6 +590,10 @@ endif
 " }
 
 " Syntax {
+    " vim-json {
+        let g:vim_json_syntax_conceal = 0
+    " }
+
     " vim-markdown {
         let g:vim_markdown_folding_disabled = 1
     " }
