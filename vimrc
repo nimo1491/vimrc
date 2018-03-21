@@ -84,6 +84,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'junegunn/vim-easy-align'
         Plug 'junegunn/limelight.vim'
         Plug 'junegunn/seoul256.vim'
+        Plug 'junegunn/vim-peekaboo'
         Plug 'junegunn/vim-journal'
         Plug 'junegunn/vim-emoji'
         Plug 'junegunn/goyo.vim'
