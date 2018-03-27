@@ -38,7 +38,6 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'scrooloose/syntastic'
         Plug 'tomtom/tcomment_vim'
         Plug 'scrooloose/nerdtree'
-        Plug 'jistr/vim-nerdtree-tabs'
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-fugitive'
         Plug 'majutsushi/tagbar'
@@ -490,8 +489,8 @@ endif
     " }
 
     " nerdtree {
-        nmap  <leader>e :NERDTreeTabsToggle<CR>
-        nmap  <leader><leader>e :NERDTreeTabsFind<CR>
+        nmap  <leader>e :NERDTreeToggle<CR>
+        nmap  <leader><leader>e :NERDTreeFind<CR>
     " }
 
     " vim-signify {
