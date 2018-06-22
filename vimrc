@@ -583,7 +583,7 @@ endif
     " }
 
     " tcomment {
-        let g:tcommentMapLeader2 = '<leader>c'
+        let g:tcomment_mapleader2 = '<leader>c'
         au FileType c nmap <buffer>gcc :TCommentAs c_<CR>
         au FileType c vmap <buffer>gc  :TCommentAs c_<CR>
     " }
