@@ -315,6 +315,11 @@ endif
     nnoremap [t :tabp<cr>
 " }
 
+" Move around buffers. {
+    nnoremap ]b :bnext<cr>
+    nnoremap [b :bprev<cr>
+" }
+
 " Allow multiple indentation/deindentation in visual mode {
     vmap < <gv
     vmap > >gv
