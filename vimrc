@@ -71,7 +71,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'mattn/emmet-vim'
     " }
 
-    " HTML, XML {
+    " Other Languages {
         Plug 'vim-scripts/python_match.vim'
     " }
 
@@ -615,15 +615,13 @@ endif
     " }
 " }
 
-" Syntax {
+" Completion {
     " UltiSnips {
         let g:UltiSnipsExpandTrigger = "<c-j>"
         let g:UltiSnipsJumpForwardTrigger = "<c-n>"
         let g:UltiSnipsJumpBackwardTrigger = "<c-p>"
     " }
-" }
 
-" Completion {
     " YouCompleteMe {
         let g:ycm_always_populate_location_list = 0
         let g:ycm_show_diagnostics_ui = 0
