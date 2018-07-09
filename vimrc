@@ -491,6 +491,7 @@ endif
     " nerdtree {
         nmap  <leader>e :NERDTreeToggle<CR>
         nmap  <leader><leader>e :NERDTreeFind<CR>
+        let   g:NERDTreeQuitOnOpen = 1
     " }
 
     " vim-signify {
