@@ -320,6 +320,10 @@ endif
     nnoremap [b :bprev<cr>
 " }
 
+" Jump list (to newer position) {
+    nnoremap <C-p> <C-i>
+" }
+
 " Allow multiple indentation/deindentation in visual mode {
     vmap < <gv
     vmap > >gv
