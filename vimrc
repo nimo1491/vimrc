@@ -73,6 +73,7 @@ silent! if plug#begin('~/.vim/plugged')
 
     " Other Languages {
         Plug 'vim-scripts/python_match.vim'
+        Plug 'tbastos/vim-lua'
     " }
 
     " Completion {
