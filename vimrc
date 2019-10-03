@@ -33,7 +33,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'terryma/vim-multiple-cursors'
         Plug 'maxbrunsfeld/vim-yankstack'
         Plug 'terryma/vim-expand-region'
-        Plug 'Lokaltog/vim-easymotion'
+        Plug 'easymotion/vim-easymotion'
         Plug 'Raimondi/delimitMate'
         Plug 'scrooloose/syntastic'
         Plug 'tomtom/tcomment_vim'
