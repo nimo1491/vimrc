@@ -366,9 +366,8 @@ endif
 " ,r replace the current word in all opened buffers {
     map <leader>r :call Replace()<CR>
     fun! Replace()
-        let s:word = input("Replace " . expand('<cword>') . " with:")
-        :exe 'bufdo! %s/\<' . expand('<cword>') . '\>/' . s:word . '/ge'
-        :unlet! s:word
+      let word = input("Replace " . expand('<cword>') . " with:")
+      :exe 'bufdo! %s/\<' . expand('<cword>') . '\>/' . word . '/ge'
     endfun
 " }
 
