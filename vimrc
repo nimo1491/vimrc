@@ -41,7 +41,6 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-fugitive'
         Plug 'majutsushi/tagbar'
-        Plug 'mileszs/ack.vim'
         Plug 'vim-scripts/argtextobj.vim'
         if v:version >= 703
           Plug 'mhinz/vim-signify'
@@ -57,6 +56,9 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'pangloss/vim-javascript'
         Plug 'hail2u/vim-css3-syntax'
         Plug 'ap/vim-css-color'
+        Plug 'tbastos/vim-lua'
+        Plug 'fatih/vim-go'
+        Plug 'mfukar/robotframework-vim'
     " }
 
     " Snippet {
@@ -71,13 +73,15 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'mattn/emmet-vim'
     " }
 
-    " Other Languages {
+    " Languages Specific {
         Plug 'vim-scripts/python_match.vim'
-        Plug 'tbastos/vim-lua'
     " }
 
     " Completion {
-        Plug 'Valloric/YouCompleteMe'
+        " Plug 'Valloric/YouCompleteMe'
+        if v:version >= 800
+            Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() }}
+        endif
     " }
 
     " junegunn {
@@ -518,37 +522,63 @@ endif
         let g:tagbar_autofocus = 1
     " }
 
-    " ack {
-        let g:ackprg = "ag"
-        let g:ack_mappings = { "H":"" }
-        nm  <leader>ag  :silent execute "Ack! --column -r ".expand("<cword>")." ./ "<Bar>QFixf<CR>
-    " }
+    " fzf {
+        let $FZF_DEFAULT_OPTS .= ' --inline-info'
 
-    " FZF {
-        if has('nvim')
-            let $FZF_DEFAULT_OPTS .= ' --inline-info --bind ctrl-f:page-down,ctrl-b:page-up'
+        " All files
+        command! -nargs=? -complete=dir AF
+          \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
+          \   'source': 'fd --type f --hidden --follow --exclude .git --no-ignore . '.expand(<q-args>)
+          \ })))
+
+        let g:fzf_colors =
+        \ { 'fg':         ['fg', 'Normal'],
+          \ 'bg':         ['bg', 'Normal'],
+          \ 'preview-bg': ['bg', 'NormalFloat'],
+          \ 'hl':         ['fg', 'Comment'],
+          \ 'fg+':        ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+          \ 'bg+':        ['bg', 'CursorLine', 'CursorColumn'],
+          \ 'hl+':        ['fg', 'Statement'],
+          \ 'info':       ['fg', 'PreProc'],
+          \ 'border':     ['fg', 'Ignore'],
+          \ 'prompt':     ['fg', 'Conditional'],
+          \ 'pointer':    ['fg', 'Exception'],
+          \ 'marker':     ['fg', 'Keyword'],
+          \ 'spinner':    ['fg', 'Label'],
+          \ 'header':     ['fg', 'Comment'] }
+
+        if exists('$TMUX')
+          let g:fzf_layout = { 'tmux': '-p90%,60%' }
         else
-            let $FZF_DEFAULT_OPTS .= ' --bind ctrl-f:page-down,ctrl-b:page-up'
+          let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
         endif
 
-        command! -bang -nargs=? -complete=dir Files
-          \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-        nnoremap <silent> <expr> <Leader>p (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+        " nnoremap <silent> <Leader><Leader> :Files<CR>
+        nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
         nnoremap <silent> <Leader>C        :Colors<CR>
-        nnoremap <silent> <Leader>b        :Buffers<CR>
+        nnoremap <silent> <Leader><Enter>  :Buffers<CR>
+        nnoremap <silent> <Leader>L        :Lines<CR>
         nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
         nnoremap <silent> <Leader>AG       :Ag <C-R><C-A><CR>
+        xnoremap <silent> <Leader>ag       y:Ag <C-R>"<CR>
         nnoremap <silent> <Leader>`        :Marks<CR>
 
         imap <c-x><c-k> <plug>(fzf-complete-word)
         imap <c-x><c-f> <plug>(fzf-complete-path)
+        inoremap <expr> <c-x><c-d> fzf#vim#complete#path('blsd')
         imap <c-x><c-j> <plug>(fzf-complete-file-ag)
         imap <c-x><c-l> <plug>(fzf-complete-line)
 
-        nmap <leader><tab> <plug>(fzf-maps-n)
-        xmap <leader><tab> <plug>(fzf-maps-x)
-        omap <leader><tab> <plug>(fzf-maps-o)
+        function! RipgrepFzf(query, fullscreen)
+          let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+          let initial_command = printf(command_fmt, shellescape(a:query))
+          let reload_command = printf(command_fmt, '{q}')
+          let options = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+          let options = fzf#vim#with_preview(options, 'right', 'ctrl-/')
+          call fzf#vim#grep(initial_command, 1, options, a:fullscreen)
+        endfunction
+
+        command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
     " }
 
     " gv.vim {
@@ -610,6 +640,7 @@ endif
 
     " vim-markdown {
         let g:vim_markdown_folding_disabled = 1
+        let g:vim_markdown_conceal = 0
     " }
 
     " nginx {
@@ -632,5 +663,45 @@ endif
         let g:ycm_collect_identifiers_from_tags_files = 1
         let g:ycm_seed_indetifiers_with_syntax = 1
         let g:ycm_confirm_extra_conf = 0
+    " }
+
+    " coc.nvim {
+        if has_key(g:plugs, 'coc.nvim')
+          function! s:check_back_space() abort
+            let col = col('.') - 1
+            return !col || getline('.')[col - 1]  =~# '\s'
+          endfunction
+
+          inoremap <silent><expr> <TAB>
+                \ complete_info().mode != 'omni' && &filetype == 'clojure' ? "\<c-x>\<c-o>" :
+                \ pumvisible() ? "\<C-n>" :
+                \ <SID>check_back_space() ? "\<TAB>" :
+                \ coc#refresh()
+          inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+          function! s:show_documentation()
+            if (index(['vim', 'help'], &filetype) >= 0)
+              execute 'h' expand('<cword>')
+            else
+              call CocAction('doHover')
+            endif
+          endfunction
+
+          nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+          let g:coc_global_extensions = ['coc-git', 'coc-python', 'coc-go',
+            \ 'coc-html', 'coc-json', 'coc-css', 'coc-prettier', 'coc-emoji',
+            \ 'coc-eslint', 'coc-tsserver', 'coc-clangd']
+          command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+          let g:go_doc_keywordprg_enabled = 0
+
+          augroup coc-config
+            autocmd!
+            autocmd VimEnter * nmap <silent> <leader>gd <Plug>(coc-definition)
+            autocmd VimEnter * nmap <silent> <leader>gi <Plug>(coc-implementation)
+            autocmd VimEnter * nmap <silent> <leader>su <Plug>(coc-references)
+          augroup END
+        endif
     " }
 " }
