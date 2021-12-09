@@ -20,6 +20,7 @@ if [[ $1 == "nvim" ]]; then
     mkdir -p .config/nvim
     cd .config/nvim
     ln -sf ~/$VIM_HOME/vimrc $NVIMRC
+    ln -sf ~/$VIM_HOME/coc-settings.json coc-settings.json
     cd ~
 else
     ln -sf $VIM_HOME/vimrc $VIMRC
