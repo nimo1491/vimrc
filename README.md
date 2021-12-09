@@ -4,27 +4,33 @@ https://github.com/nimo1491/vimrc
 
 ## PREREQUISITE
 
-* [Ctags](http://ctags.sourceforge.net/) (*tagbar*)
-* [The Silver Searcher](http://geoff.greer.fm/ag) (*ack.vim*)
+* [ctags](http://ctags.sourceforge.net/)
+* [ripgrep](https://github.com/BurntSushi/ripgrep)
+* [fzf](https://github.com/junegunn/fzf)
 
-Install development tool, CMake, and Python headers for YouCompleteMe in Ubuntu
+Install clangd, nodejs and yarn for coc.nvim. Check out:
 
-```bash
-    $ sudo apt-get install build-essential cmake python-dev
-```
+* [coc.nvim](https://github.com/neoclide/coc.nvim)
+
 
 ## ONE-STEP INSTALL
 
 Use curl:
 
 ```bash
-    $ curl -L https://raw.github.com/nimo1491/vimrc/master/auto-install.sh | sh
+    $ curl -L https://raw.github.com/nimo1491/vimrc/master/auto-install.sh | bash
 ```
 
 or wget:
 
 ```bash
-    $ wget -O - https://raw.github.com/nimo1491/vimrc/master/auto-install.sh | sh
+    $ wget -O - https://raw.github.com/nimo1491/vimrc/master/auto-install.sh | bash
+```
+
+If using nvim:
+
+```bash
+    $ curl -L https://raw.github.com/nimo1491/vimrc/master/auto-install.sh | bash -s nvim
 ```
 
 
