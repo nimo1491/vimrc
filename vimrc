@@ -547,11 +547,7 @@ endif
           \ 'spinner':    ['fg', 'Label'],
           \ 'header':     ['fg', 'Comment'] }
 
-        if exists('$TMUX')
-          let g:fzf_layout = { 'tmux': '-p90%,60%' }
-        else
-          let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-        endif
+        let g:fzf_layout = { 'down': '50%' }
 
         " nnoremap <silent> <Leader><Leader> :Files<CR>
         nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
