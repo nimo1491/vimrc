@@ -558,9 +558,9 @@ endif
         nnoremap <silent> <Leader>C        :Colors<CR>
         nnoremap <silent> <Leader><Enter>  :Buffers<CR>
         nnoremap <silent> <Leader>L        :Lines<CR>
-        nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
-        nnoremap <silent> <Leader>AG       :Ag <C-R><C-A><CR>
-        xnoremap <silent> <Leader>ag       y:Ag <C-R>"<CR>
+        nnoremap <silent> <Leader>ag       :RG <C-R><C-W><CR>
+        nnoremap <silent> <Leader>AG       :RG <C-R><C-A><CR>
+        xnoremap <silent> <Leader>ag       y:RG <C-R>"<CR>
         nnoremap <silent> <Leader>`        :Marks<CR>
 
         imap <c-x><c-k> <plug>(fzf-complete-word)
