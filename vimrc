@@ -523,7 +523,11 @@ endif
     " }
 
     " fzf {
-        let $FZF_DEFAULT_OPTS .= ' --inline-info'
+        if has('nvim')
+            let $FZF_DEFAULT_OPTS .= ' --inline-info --bind ctrl-f:page-down,ctrl-b:page-up'
+        else
+            let $FZF_DEFAULT_OPTS .= ' --bind ctrl-f:page-down,ctrl-b:page-up'
+        endif
 
         " All files
         command! -nargs=? -complete=dir AF
@@ -534,7 +538,6 @@ endif
         let g:fzf_colors =
         \ { 'fg':         ['fg', 'Normal'],
           \ 'bg':         ['bg', 'Normal'],
-          \ 'preview-bg': ['bg', 'NormalFloat'],
           \ 'hl':         ['fg', 'Comment'],
           \ 'fg+':        ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
           \ 'bg+':        ['bg', 'CursorLine', 'CursorColumn'],
