@@ -553,7 +553,7 @@ endif
         let g:fzf_layout = { 'down': '50%' }
 
         " nnoremap <silent> <Leader><Leader> :Files<CR>
-        nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+        nnoremap <silent> <expr> <Leader>p (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
         nnoremap <silent> <Leader>C        :Colors<CR>
         nnoremap <silent> <Leader><Enter>  :Buffers<CR>
         nnoremap <silent> <Leader>L        :Lines<CR>
