@@ -665,41 +665,40 @@ endif
 
     " coc.nvim {
         if has_key(g:plugs, 'coc.nvim')
-          function! s:check_back_space() abort
-            let col = col('.') - 1
-            return !col || getline('.')[col - 1]  =~# '\s'
-          endfunction
+            function! s:check_backspace() abort
+                let col = col('.') - 1
+                return !col || getline('.')[col - 1]  =~# '\s'
+            endfunction
 
-          inoremap <silent><expr> <TAB>
-                \ complete_info().mode != 'omni' && &filetype == 'clojure' ? "\<c-x>\<c-o>" :
-                \ pumvisible() ? "\<C-n>" :
-                \ <SID>check_back_space() ? "\<TAB>" :
+            inoremap <silent><expr> <TAB>
+                \ coc#pum#visible() ? coc#pum#next(1) :
+                \ <SID>check_backspace() ? "\<Tab>" :
                 \ coc#refresh()
-          inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+            inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-          function! s:show_documentation()
-            if (index(['vim', 'help'], &filetype) >= 0)
-              execute 'h' expand('<cword>')
-            else
-              call CocAction('doHover')
-            endif
-          endfunction
+            function! s:show_documentation()
+                if (index(['vim', 'help'], &filetype) >= 0)
+                    execute 'h' expand('<cword>')
+                else
+                   call CocAction('doHover')
+                endif
+            endfunction
 
-          nnoremap <silent> K :call <SID>show_documentation()<CR>
+            nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-          let g:coc_global_extensions = ['coc-git', 'coc-python', 'coc-go',
-            \ 'coc-html', 'coc-json', 'coc-css', 'coc-prettier', 'coc-emoji',
-            \ 'coc-eslint', 'coc-tsserver', 'coc-clangd']
-          command! -nargs=0 Prettier :CocCommand prettier.formatFile
+            let g:coc_global_extensions = ['coc-git', 'coc-python', 'coc-go',
+                \ 'coc-html', 'coc-json', 'coc-css', 'coc-prettier', 'coc-emoji',
+                \ 'coc-eslint', 'coc-tsserver', 'coc-clangd']
+            command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-          let g:go_doc_keywordprg_enabled = 0
+            let g:go_doc_keywordprg_enabled = 0
 
-          augroup coc-config
-            autocmd!
-            autocmd VimEnter * nmap <silent> <leader>gd <Plug>(coc-definition)
-            autocmd VimEnter * nmap <silent> <leader>gi <Plug>(coc-implementation)
-            autocmd VimEnter * nmap <silent> <leader>su <Plug>(coc-references)
-          augroup END
+            augroup coc-config
+                autocmd!
+                autocmd VimEnter * nmap <silent> <leader>gd <Plug>(coc-definition)
+                autocmd VimEnter * nmap <silent> <leader>gi <Plug>(coc-implementation)
+                autocmd VimEnter * nmap <silent> <leader>su <Plug>(coc-references)
+            augroup END
         endif
     " }
 " }
