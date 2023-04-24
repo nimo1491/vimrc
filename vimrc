@@ -58,6 +58,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'ap/vim-css-color'
         Plug 'tbastos/vim-lua'
         Plug 'fatih/vim-go'
+        Plug 'stephpy/vim-yaml'
         Plug 'mfukar/robotframework-vim'
     " }
 
