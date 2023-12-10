@@ -32,6 +32,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'editorconfig/editorconfig-vim'
         Plug 'terryma/vim-multiple-cursors'
         Plug 'maxbrunsfeld/vim-yankstack'
+        Plug 'vim-scripts/argtextobj.vim'
         Plug 'terryma/vim-expand-region'
         Plug 'easymotion/vim-easymotion'
         Plug 'Raimondi/delimitMate'
@@ -41,7 +42,7 @@ silent! if plug#begin('~/.vim/plugged')
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-fugitive'
         Plug 'majutsushi/tagbar'
-        Plug 'vim-scripts/argtextobj.vim'
+        Plug 'dyng/ctrlsf.vim'
         if v:version >= 703
           Plug 'mhinz/vim-signify'
         endif
@@ -523,6 +524,16 @@ endif
         let g:tagbar_autofocus = 1
     " }
 
+    " ctrlsf {
+        nm  <leader>f :CtrlSF <C-R><C-W><CR>
+        nm  <leader>ft :CtrlSFToggle <CR>
+        nm  <leader>fo :CtrlSFOpen <CR>
+
+        let g:ctrlsf_auto_close = {'normal': 0, 'compact': 0}
+        let g:ctrlsf_auto_focus = {'at': 'start'}
+        let g:ctrlsf_auto_preview = 1
+    " }
+
     " fzf {
         if has('nvim')
             let $FZF_DEFAULT_OPTS .= ' --inline-info --bind ctrl-f:page-down,ctrl-b:page-up'
@@ -560,6 +571,7 @@ endif
         nnoremap <silent> <Leader>L        :Lines<CR>
         nnoremap <silent> <Leader>ag       :RG <C-R><C-W><CR>
         nnoremap <silent> <Leader>AG       :RG <C-R><C-A><CR>
+        nnoremap <silent> <Leader>Ag       :Rg <C-R><C-W><CR>
         xnoremap <silent> <Leader>ag       y:RG <C-R>"<CR>
         nnoremap <silent> <Leader>`        :Marks<CR>
 
