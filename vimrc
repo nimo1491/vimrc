@@ -574,6 +574,10 @@ endif
         nnoremap <silent> <Leader>Ag       :Rg <C-R><C-W><CR>
         xnoremap <silent> <Leader>ag       y:RG <C-R>"<CR>
         nnoremap <silent> <Leader>`        :Marks<CR>
+        nnoremap <silent> <Leader>h        :History<CR>
+        nnoremap <silent> <Leader>hc       :History:<CR>
+        nnoremap <silent> <Leader>hs       :History/<CR>
+        nnoremap <silent> <Leader>T        :Tags<CR>
 
         imap <c-x><c-k> <plug>(fzf-complete-word)
         imap <c-x><c-f> <plug>(fzf-complete-path)
