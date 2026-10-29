@@ -1,64 +1,63 @@
-# NIMO'S VIMRC
-https://github.com/nimo1491/vimrc
+# Nimo's vimrc
 
+My Neovim / Vim configuration, managed with [vim-plug](https://github.com/junegunn/vim-plug)
+and [coc.nvim](https://github.com/neoclide/coc.nvim) for completion.
 
-## PREREQUISITE
+## Requirements
 
-* [ctags](http://ctags.sourceforge.net/)
-* [ripgrep](https://github.com/BurntSushi/ripgrep)
-* [fzf](https://github.com/junegunn/fzf)
+- Neovim 0.10+ (for copying to the local clipboard over SSH via OSC 52). With
+  [nimo1491/rc](https://github.com/nimo1491/rc), mise installs it.
+- Node.js for coc.nvim (also from mise with nimo1491/rc)
+- [ripgrep](https://github.com/BurntSushi/ripgrep), [fzf](https://github.com/junegunn/fzf),
+  ctags, and optionally clangd for C/C++ completion:
 
-Install clangd, nodejs and yarn for coc.nvim. Check out:
+      sudo apt install ripgrep universal-ctags clangd
 
-* [coc.nvim](https://github.com/neoclide/coc.nvim)
+## Install
 
+For Neovim:
 
-## ONE-STEP INSTALL
+    curl -fsSL https://raw.githubusercontent.com/nimo1491/vimrc/master/auto-install.sh | bash -s nvim
 
-Use curl:
+For Vim, drop `-s nvim`. This clones the repo to `~/.vim` and runs `install.sh`,
+which downloads vim-plug, links the config and installs the plugins. To re-run
+it on an existing clone, run `~/.vim/install.sh nvim`.
 
-```bash
-    $ curl -L https://raw.github.com/nimo1491/vimrc/master/auto-install.sh | bash
-```
+coc.nvim installs the extensions listed in `g:coc_global_extensions` on the
+first start.
 
-or wget:
+## Upgrade plugins
 
-```bash
-    $ wget -O - https://raw.github.com/nimo1491/vimrc/master/auto-install.sh | bash
-```
+Run `:PlugUpdate` (or `:PlugInstall` after adding a plugin), and `:CocUpdate`
+for the coc extensions.
 
-If using nvim:
+## Key mappings
 
-```bash
-    $ curl -L https://raw.github.com/nimo1491/vimrc/master/auto-install.sh | bash -s nvim
-```
+The leader key is `,`.
 
+| Key | Description |
+| --- | --- |
+| `,p` | find files (fzf) |
+| `,<Enter>` | switch buffers |
+| `,ag` / `,Ag` | live ripgrep / ripgrep for the word under the cursor |
+| `,f` | search the word under the cursor with CtrlSF |
+| `,h` | recently opened files |
+| `,e` / `,,e` | toggle NERDTree / reveal the current file |
+| `,t` | toggle Tagbar |
+| `,gd` / `,gi` / `,su` | go to definition / implementation / references (coc) |
+| `K` | show documentation |
+| `s` | EasyMotion jump |
+| `Ctrl-n` | multiple cursors (vim-visual-multi) |
+| `,G` | Goyo distraction-free mode |
+| `,/` | clear search highlighting |
+| `:cd.` | change the window's directory to the current file's |
+| `:w!!` | save with sudo |
 
-## MANUALLY INSTALL
+## References
 
-* Check out from github and then install it
-
-```bash
-    $ git clone https://github.com/nimo1491/vimrc ~/.vim
-    $ cd ~/.vim
-    $ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    $ ./install.sh
-```
-
-
-## UPGRADE PLUGIN
-
-Launch `vim` and run `:PlugInstall`
-
-To install from command line: `vim +PlugInstall +qall`
-
-
-REFERENCES
-----------
-
-* https://github.com/moskytw/mosky.vim
-* https://github.com/junegunn/dotfiles
-* https://github.com/ycavatars/vimrc
-* https://github.com/othree/rc.git
-* https://github.com/vgod/vimrc.git
-* https://github.com/carlhuda/janus.git
+- https://github.com/moskytw/mosky.vim
+- https://github.com/junegunn/dotfiles
+- https://github.com/ycavatars/vimrc
+- https://github.com/othree/rc.git
+- https://github.com/vgod/vimrc.git
+- https://github.com/carlhuda/janus.git

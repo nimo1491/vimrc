@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# The entry point for automatic installation. Usage: auto-install.sh [nvim]
+
 VIM_HOME=~/.vim
 
 warn() {
@@ -10,19 +13,14 @@ die() {
     exit 1
 }
 
-[ -e "~/.vim" ] && die "~/.vim already exists."
+[[ -e "$VIM_HOME" ]] && die "~/.vim already exists."
 if [[ $1 == "nvim" ]]; then
-    [ -e "~/.config/nvim/init.vim" ] && die "nvimrc already exists."
+    [[ -e ~/.config/nvim/init.vim ]] && die "~/.config/nvim/init.vim already exists."
 else
-    [ -e "~/.vimrc" ] && die "vimrc already exists."
+    [[ -e ~/.vimrc ]] && die "~/.vimrc already exists."
 fi
 
-git clone https://github.com/nimo1491/vimrc.git "$VIM_HOME"
+git clone https://github.com/nimo1491/vimrc.git "$VIM_HOME" ||
+    die "Failed to clone vimrc repository."
 
-cd "$VIM_HOME"
-
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-./install.sh $1
-
+"$VIM_HOME"/install.sh "$1" || die "Failed to invoke installation process."

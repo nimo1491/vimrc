@@ -1,40 +1,43 @@
 #!/bin/bash
+#
+# Link the vimrc and install plugins. Usage: ./install.sh [nvim]
 
-# No more support Windows
-VIMRC=".vimrc"
-VIM_HOME=".vim"
-NVIMRC="init.vim"
+VIM_HOME=$(cd "$(dirname "$0")" && pwd)
 
-cd ..
+warn() {
+    echo "$1" >&2
+}
 
-# autoload
-if [[ $1 == "nvim" ]]; then
-    mkdir -p .local/share/nvim/site
-    cd .local/share/nvim/site
-    ln -sf ~/$VIM_HOME/autoload autoload
-    cd ~
+die() {
+    warn "$1"
+    exit 1
+}
+
+cd ~ || die "Failed to change to the home directory."
+
+# vim-plug
+if ! [[ -f "$VIM_HOME"/autoload/plug.vim ]]; then
+    curl -fLo "$VIM_HOME"/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim ||
+        die "Failed to download vim-plug."
 fi
 
 # vimrc
 if [[ $1 == "nvim" ]]; then
-    mkdir -p .config/nvim
-    cd .config/nvim
-    ln -sf ~/$VIM_HOME/vimrc $NVIMRC
-    ln -sf ~/$VIM_HOME/coc-settings.json coc-settings.json
-    cd ~
+    mkdir -p .local/share/nvim/site .config/nvim
+    ln -sfn "$VIM_HOME"/autoload .local/share/nvim/site/autoload
+    ln -sf "$VIM_HOME"/vimrc .config/nvim/init.vim
+    ln -sf "$VIM_HOME"/coc-settings.json .config/nvim/coc-settings.json
 else
-    ln -sf $VIM_HOME/vimrc $VIMRC
+    ln -sf "$VIM_HOME"/vimrc .vimrc
 fi
 
-# install vundle plugins
+# plugins
 echo "install plugins..."
-cd $VIM_HOME
 if [[ $1 == "nvim" ]]; then
-    nvim +PlugInstall +qall
+    nvim --headless +'PlugInstall --sync' +qall || warn "Failed to install plugins."
 else
-    vim +PlugInstall +qall
+    vim +PlugInstall +qall || warn "Failed to install plugins."
 fi
 
-# finish
-cd ../../../
 echo "done"
