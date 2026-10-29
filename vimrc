@@ -5,17 +5,6 @@
 "---------------------------------------------------
 " vim-plug
 "---------------------------------------------------
-" Set the runtime path to include Vundle and initialize {
-    " set nocompatible
-    " filetype off
-    " if has("win32") || has("win64")
-    "     set rtp+=$VIM\vimfiles\bundle\Vundle
-    " else
-    "     set rtp+=~/.vim/bundle/Vundle/
-    " endif
-    " call vundle#rc()
-" }
-
 silent! if plug#begin('~/.vim/plugged')
     " UI {
         Plug 'Twinside/vim-cuteErrorMarker'
@@ -30,13 +19,12 @@ silent! if plug#begin('~/.vim/plugged')
     " Basic {
         Plug 'michaeljsmith/vim-indent-object'
         Plug 'editorconfig/editorconfig-vim'
-        Plug 'terryma/vim-multiple-cursors'
+        Plug 'mg979/vim-visual-multi'
         Plug 'maxbrunsfeld/vim-yankstack'
         Plug 'vim-scripts/argtextobj.vim'
         Plug 'terryma/vim-expand-region'
         Plug 'easymotion/vim-easymotion'
         Plug 'Raimondi/delimitMate'
-        Plug 'scrooloose/syntastic'
         Plug 'tomtom/tcomment_vim'
         Plug 'scrooloose/nerdtree'
         Plug 'tpope/vim-surround'
@@ -49,15 +37,11 @@ silent! if plug#begin('~/.vim/plugged')
     " }
 
     " Syntax {
-        Plug 'vim-scripts/nginx.vim'
-        Plug 'elzr/vim-json'
         Plug 'othree/html5.vim'
         Plug 'plasticboy/vim-markdown'
-        Plug 'jiangmiao/simple-javascript-indenter'
         Plug 'pangloss/vim-javascript'
         Plug 'hail2u/vim-css3-syntax'
         Plug 'ap/vim-css-color'
-        Plug 'tbastos/vim-lua'
         Plug 'fatih/vim-go'
         Plug 'stephpy/vim-yaml'
         Plug 'mfukar/robotframework-vim'
@@ -69,20 +53,14 @@ silent! if plug#begin('~/.vim/plugged')
     " }
 
     " HTML, XML {
-        Plug 'vim-scripts/matchit.zip'
         Plug 'gregsexton/MatchTag'
         Plug 'tpope/vim-ragtag'
         Plug 'mattn/emmet-vim'
     " }
 
-    " Languages Specific {
-        Plug 'vim-scripts/python_match.vim'
-    " }
-
     " Completion {
-        " Plug 'Valloric/YouCompleteMe'
         if v:version >= 800
-            Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() }}
+            Plug 'neoclide/coc.nvim', {'branch': 'release'}
         endif
     " }
 
@@ -107,14 +85,21 @@ endif
 "---------------------------------------------------
 " VIM Basic and UI
 "---------------------------------------------------
+" Group the autocmds below so re-sourcing this file does not duplicate them {
+    augroup vimrc
+        autocmd!
+    augroup END
+" }
+
 " Encoding settings {
     set fencs=utf-8,big5,euc-jp,utf-bom,iso8859-1
-    set fenc=utf-8 enc=utf-8 tenc=utf-8
+    set fenc=utf-8
+    if !has('nvim')
+        set enc=utf-8 tenc=utf-8
+    endif
 " }
 
 " General Settings {
-    " not compatible with the old-fashion vi mode
-    set nocompatible
     " set dark background
     set bg=dark
     " equals bs=indent,eol,start
@@ -143,8 +128,6 @@ endif
     set mat=15
     " force newline = 0x0a
     set ff=unix
-    " send more chars while redrawing
-    set ttyfast
     " don't redraw while exectuing macros
     set lazyredraw
     " enable mouse
@@ -152,6 +135,21 @@ endif
     " always use the clipboard for ALL vim operations
     if has('nvim')
         set clipboard+=unnamedplus
+        " Over SSH, copy to the local clipboard via OSC 52 (nvim 0.10+); paste
+        " from the unnamed register since most terminals block OSC 52 reads
+        if has('nvim-0.10') && !empty($SSH_CONNECTION)
+            lua << EOF
+            local osc52 = require('vim.ui.clipboard.osc52')
+            local function paste()
+                return { vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('') }
+            end
+            vim.g.clipboard = {
+                name = 'OSC 52',
+                copy = { ['+'] = osc52.copy('+'), ['*'] = osc52.copy('*') },
+                paste = { ['+'] = paste, ['*'] = paste },
+            }
+EOF
+        endif
     else
         set clipboard+=unnamed
     endif
@@ -218,7 +216,7 @@ endif
     " }
 
     " Makefile have to use <TAB> excepts spaces
-    au FileType Makefile set noexpandtab
+    au vimrc FileType make setlocal noexpandtab
 " }
 
 " Disable sound on errors {
@@ -230,8 +228,13 @@ endif
 
 " UI settings {
     if !has("gui_running")
-        " color
-        set t_Co=256
+        " nvim 0.10+ turns on true color when the terminal supports it, which
+        " changes how the themes look; keep the 256-color palette
+        set notermguicolors
+        " nvim 0.10+ combines statusline highlights with StatusLine, so its
+        " reverse attribute would invert airline's colors
+        au vimrc ColorScheme * hi StatusLine cterm=NONE gui=NONE
+            \ | hi StatusLineNC cterm=NONE gui=NONE
         " scheme
         silent! colors PaperColor
         " highlight current line
@@ -247,31 +250,8 @@ endif
     filetype indent on
 " }
 
-" Status line {
-    " if has('statusline')
-    "     set laststatus=2
-    "     set statusline=\ %{HasPaste()}%<%-15.25(%f%)%m%r%h\ %w\ \
-    "     set statusline+=\ \ \ [%{&ff}/%Y]
-    "     set statusline+=\ \ \ %<%20.30(%{hostname()}:%{CurDir()}%)\
-    "     set statusline+=%=%-10.(%l,%c%V%)\ %p%%/%L
-    "
-    "     function! CurDir()
-    "         let curdir = substitute(getcwd(), $HOME, "~", "")
-    "         return curdir
-    "     endfunction
-    "
-    "     function! HasPaste()
-    "         if &paste
-    "             return '[PASTE]'
-    "         else
-    "             return ''
-    "         endif
-    "     endfunction
-    " endif
-" }
-
 " Restore cursor to file position in previous editing session {
-    au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+    au vimrc BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 " }
 
 
@@ -279,15 +259,15 @@ endif
 " Language Specific Indent
 "---------------------------------------------------
 " C/C++ specific settings {
-    au FileType c,cpp,cc set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^0s,:s,=s,g1s,h1s,p2,t0,+2,(2,)20,*30
+    au vimrc FileType c,cpp,cc setlocal cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^0s,:s,=s,g1s,h1s,p2,t0,+2,(2,)20,*30
 " }
 
 " HTML/CSS/Javascript/Ruby/Java indent settings {
-    au FileType html,javascript,css,ejs,ruby,java setlocal ts=2 sts=2 sw=2
+    au vimrc FileType html,javascript,css,ejs,ruby,java setlocal ts=2 sts=2 sw=2
 " }
 
 " Handlebars {
-    au BufNewFile,BufRead *.handlebars set filetype=html
+    au vimrc BufNewFile,BufRead *.handlebars set filetype=html
 " }
 
 
@@ -300,7 +280,7 @@ endif
 " }
 
 " Change working directory to that of the current file {
-    cmap cd. lcd %:p:h
+    cnoreabbrev <expr> cd. getcmdtype() == ':' && getcmdline() ==# 'cd.' ? 'lcd %:p:h' : 'cd.'
 " }
 
 " Turn off search highlighting {
@@ -312,7 +292,7 @@ endif
 " }
 
 " For when you forget to sudo in ubuntu/mint... {
-    cmap w!! w !sudo tee % > /dev/null
+    cnoreabbrev <expr> w!! getcmdtype() == ':' && getcmdline() ==# 'w!!' ? 'w !sudo tee % > /dev/null' : 'w!!'
 " }
 
 " Move around tabs. conflict with the original screen top/bottom {
@@ -459,7 +439,7 @@ endif
             function! AirlineOverwrite()
                 let g:airline_section_c = airline#section#create(['%{S_filetype()}', ' %f'])
             endfunction
-            autocmd VimEnter * call AirlineOverwrite()
+            autocmd vimrc VimEnter * call AirlineOverwrite()
         endif
     " }
 " }
@@ -493,17 +473,6 @@ endif
         imap <leader>j <ESC>o
         imap <leader>l <ESC>la
         imap <leader>h <ESC>hi
-    " }
-
-    " Syntastic {
-        let g:syntastic_mode_map = {
-            \ "mode": "passive",
-            \ "active_filetypes": [],
-            \ "passive_filetypes": []}
-        let g:syntastic_auto_loc_list = 1
-        let g:syntastic_javascript_checkers = ['eslint']
-        let g:syntastic_python_checkers = ['python']
-        nm <leader>sy :SyntasticCheck<CR>
     " }
 
     " nerdtree {
@@ -544,7 +513,7 @@ endif
         " All files
         command! -nargs=? -complete=dir AF
           \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
-          \   'source': 'fd --type f --hidden --follow --exclude .git --no-ignore . '.expand(<q-args>)
+          \   'source': 'rg --files --hidden --follow --no-ignore --glob !.git '.expand(<q-args>)
           \ })))
 
         let g:fzf_colors =
@@ -582,7 +551,7 @@ endif
         imap <c-x><c-k> <plug>(fzf-complete-word)
         imap <c-x><c-f> <plug>(fzf-complete-path)
         inoremap <expr> <c-x><c-d> fzf#vim#complete#path('blsd')
-        imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+        inoremap <expr> <c-x><c-j> fzf#vim#complete#path('rg --files')
         imap <c-x><c-l> <plug>(fzf-complete-line)
 
         function! RipgrepFzf(query, fullscreen)
@@ -601,7 +570,7 @@ endif
         function! s:gv_expand()
             let line = getline('.')
             GV --name-status
-            call search('\V'.ine, 'c')
+            call search('\V'.line, 'c')
             normal! zz
         endfunction
 
@@ -644,23 +613,14 @@ endif
 
     " tcomment {
         let g:tcomment_mapleader2 = '<leader>c'
-        au FileType c nmap <buffer>gcc :TCommentAs c_<CR>
-        au FileType c vmap <buffer>gc  :TCommentAs c_<CR>
+        au vimrc FileType c nmap <buffer>gcc :TCommentAs c_<CR>
+        au vimrc FileType c vmap <buffer>gc  :TCommentAs c_<CR>
     " }
 " }
 
 " Syntax {
-    " vim-json {
-        let g:vim_json_syntax_conceal = 0
-    " }
-
     " vim-markdown {
         let g:vim_markdown_folding_disabled = 1
-    " }
-
-    " nginx {
-        au BufRead,BufNewFile /usr/local/etc/nginx/* set ft=nginx
-        au BufRead,BufNewFile /etc/nginx/* set ft=nginx
     " }
 " }
 
@@ -669,15 +629,6 @@ endif
         let g:UltiSnipsExpandTrigger = "<c-j>"
         let g:UltiSnipsJumpForwardTrigger = "<c-n>"
         let g:UltiSnipsJumpBackwardTrigger = "<c-p>"
-    " }
-
-    " YouCompleteMe {
-        let g:ycm_always_populate_location_list = 0
-        let g:ycm_show_diagnostics_ui = 0
-        let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-        let g:ycm_collect_identifiers_from_tags_files = 1
-        let g:ycm_seed_indetifiers_with_syntax = 1
-        let g:ycm_confirm_extra_conf = 0
     " }
 
     " coc.nvim {
@@ -703,7 +654,7 @@ endif
 
             nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-            let g:coc_global_extensions = ['coc-git', 'coc-python', 'coc-go',
+            let g:coc_global_extensions = ['coc-git', 'coc-pyright', 'coc-go',
                 \ 'coc-html', 'coc-json', 'coc-css', 'coc-prettier', 'coc-emoji',
                 \ 'coc-eslint', 'coc-tsserver', 'coc-clangd']
             command! -nargs=0 Prettier :CocCommand prettier.formatFile
